@@ -81,7 +81,8 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            // Compare address books only, since FilteredList doesn't implement proper equals()
+            assertEquals(expectedModel.getAddressBook(), actualModel.getAddressBook());
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
