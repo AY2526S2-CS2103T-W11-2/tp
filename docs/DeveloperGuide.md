@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Add a company profile**
 * Actor: Headhunter
-* Precondition: Company Profile does not already exist
+* Precondition: App running with Java 17 installed
 
 **MSS**
 
@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View a company profile**
 * Actor: Headhunter
-* Precondition: At least one company profile exists
+* Precondition: App running with Java 17 installed
 
 **MSS**
 
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a company profile**
 * Actor: Headhunter
-* Precondition: The company profile exists
+* Precondition: App running with Java 17 installed
 
 **MSS**
 
