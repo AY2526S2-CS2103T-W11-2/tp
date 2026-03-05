@@ -288,27 +288,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​    | I want to …​                  | So that I can…​                                                                        |
-|----------|------------|-------------------------------|----------------------------------------------------------------------------------------|
-| `* * *`  | Headhunter | add new candidate contacts    | build a database of potential hires for future placements                              |
-| `* * *`  | Headhunter | delete contacts               | keep my database uncluttered by removing irrelevant candidates contacts                |
-| `* * *`  | Headhunter | list contacts                 | easily browse my talent pool to locate specific individuals                            |
-| `* * *`  | Headhunter | add contact groups            | keep track of which candidates are headhunted for the companies                        |
-| `* * *`  | Headhunter | delete contact groups         | remove the group for a role when it is already filled                                  |
-| `* * *`  | Headhunter | list contact groups           | view a complete overview of all the job groups I have added to the system              |
-| `* * *`  | Headhunter | list contact group members    | easily evaluate and compare all shortlisted candidates for a specific open position    |
-| `* * *`  | Headhunter | add company profile           | keep track of the companies I am headhunting for                                       |
-| `* * *`  | Headhunter | delete company profile        | remove the companies that have stopped using my headhunting services                   |
-| `* * *`  | Headhunter | list specific company profile | review all the active job placements that particular client has hired me to fill       |
-| `* * *`  | Headhunter | list all company profile      | view all companies I am headhunting for to get a high-level overview of my client base |
+| Priority | As a …​    | I want to …​                                | So that I can…​                                                                                  |
+|----------|------------|---------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `* * *`  | Headhunter | add new candidate contacts                  | build a database of potential hires for future placements                                        |
+| `* * *`  | Headhunter | delete contacts                             | keep my database uncluttered by removing irrelevant candidates contacts                          |
+| `* * *`  | Headhunter | list contacts                               | easily browse my talent pool to locate specific individuals                                      |
+| `* * *`  | Headhunter | add contact groups                          | keep track of which candidates are headhunted for the companies                                  |
+| `* * *`  | Headhunter | delete contact groups                       | remove the group for a role when it is already filled                                            |
+| `* * *`  | Headhunter | list contact groups                         | view a complete overview of all the job groups I have added to the system                        |
+| `* * *`  | Headhunter | add contacts to contact groups              | build a targeted shortlist of candidates for a specific job opening                              |
+| `* * *`  | Headhunter | delete contacts from contact groups         | keep my shortlist accurate by removing candidates who are no longer in the running for that role |
+| `* * *`  | Headhunter | list contact group members                  | easily evaluate and compare all shortlisted candidates for a specific open position              |
+| `* * *`  | Headhunter | add company profile                         | keep track of the companies I am headhunting for                                                 |
+| `* * *`  | Headhunter | delete company profile                      | remove the companies that have stopped using my headhunting services                             |
+| `* * *`  | Headhunter | list all company profile                    | view all companies I am headhunting for to get a high-level overview of my client base           |
+| `* * *`  | Headhunter | add company details to company profile      | maintain comprehensive records of my clients' requirements and contact information               |
+| `* * *`  | Headhunter | delete company details from company profile | keep my client records accurate by removing outdated or incorrect information                    |
+| `* * *`  | Headhunter | list specific company profile               | review all the active job placements that particular client has hired me to fill                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HitList` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `HitList`, **Actor** is the `user` and **Precondition** is the `app actively runs and runs on Java 17`, unless specified otherwise
 
-**Use case: Add a contact**
+**Use case 1: Add a contact**
 
 **MSS**
 
@@ -320,68 +324,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. A contact with the same phone number already exists.
-  * 1a1. System shows an error message
+* 1a. System detects that a contact with the same phone number already exists.
+    * 1a1. System shows previously added contact with the same phone number message
 
     Use case ends.
 
-**Use case: Delete a contact**
+**Use case 2: Delete a contact**
 
 **MSS**
 
 1.  User requests to delete a contact
 2.  System deletes the contact
-2.  System confirms that the contact has been deleted
+3.  System confirms that the contact has been deleted
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The requested contact does not exist.
-  * 1a1. System shows an error message
+* 1a. System detects that the requested contact does not exist.
+    * 1a1. System shows requested contact does not exist message
 
-      Use case resumes at step 2.
-      For the following use cases (unless otherwise specified):
-* Actor: Headhunter
-* Precondition: App is running
-* System is the HitList
+    Use case ends.
 
-**Use case: Add a contact group**
-* Precondition: App running with Java 17 installed
-* 
+**Use case 3: List contacts**
+
 **MSS**
 
-1. User requests to add a contact group 
-2. System creates the contact group 
+1.  User requests to list all contacts
+2.  System displays all contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that the contact list is empty
+    * 2a1. System shows contact list is empty message
+
+    Use case ends.
+
+**Use case 4: Add a contact group**
+
+**MSS**
+
+1. User requests to add a contact group
+2. System creates the contact group
 3. System informs user that the contact group has been created
 
     Use case ends.
 
 **Extensions**
 
-* 1a. System detects that a company profile with the same name already exists 
-* 1a1. System informs user of the error
-  Use case ends.
+* 2a. System detects that a company profile with the same name already exists
+    * 2a1. System shows company profile already exists message
 
-**Use case: Delete a contact group**
-* Precondition: App running with Java 17 installed
-* 
+    Use case ends.
+
+**Use case 5: Delete a contact group**
+
 **MSS**
 
 1. User requests to delete a contact group 
 2. System deletes the contact group 
 3. System informs user that the contact group has been deleted
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. System detects that the contact group does not exist.
-* 1a1. System informs user of the error.
-Use case ends.
+    * 1a1. System shows contact group does not exist message
 
-**Use case: Add a company profile**
-* Actor: Headhunter
-* Precondition: App running with Java 17 installed
+    Use case ends.
+
+**Use case 6: List contact groups**
+
+**MSS**
+
+1.  User requests to list all contact groups
+2.  System displays all contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that there are no contact groups
+    * 2a1. System shows no contact groups message
+
+    Use case ends.
+
+**Use case 7: Add a contact to a contact group**
+
+**MSS**
+
+1. User <u>creates a contact (UC1)</u>
+2. User <u>creates a contact group (UC4)</u>
+3. User requests to add the contact to the contact group
+4. System creates the contact group
+5. System informs user that the contact group has been created
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. System detects that the contact is already in the contact group
+    * 4a1. System shows contact is already in the contact group message
+* 4b. System detects that contact group does not exist
+    * 4b1. System shows contact group does not exist message
+* 4c. System detects that contact does not exist
+    * 4c1. System shows contact does not exist message
+
+    Use case ends.
+
+**Use case 7: Remove contacts from contact group**
+
+**MSS**
+
+1. User requests remove a contact from a contact group
+2. System informs user that the contact has been removed from the contact group
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects there is no such contact in the contact group
+    * 2a1. System shows contact is not in the contact group message
+* 2b. System detects that contact group does not exist
+    * 2b1. System shows contact group does not exist message
+* 2c. System detects that contact does not exist
+    * 2c1. System shows contact does not exist message
+
+    Use case ends.
+
+**Use case 8: List contact group members**
+
+**MSS**
+
+1.  User requests to list contact group members of a specified contact group
+2.  System displays all contact group members of the specified contact group
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that the specified contact group does not exist
+    * 2a1. System shows contact group does not exist message
+
+    Use case ends.
+
+**Use case 9: Add a company profile**
 
 **MSS**
 
@@ -393,33 +483,12 @@ Use case ends.
 
 **Extensions**
 
-* 1a. A company profile with the same name already exists
-  * 1a1. System shows an error message
+* 1a. System detects that a company profile with the same name already exists
+    * 1a1. System shows company profile already exists message
 
     Use case ends.
 
-**Use case: View a company profile**
-* Actor: Headhunter
-* Precondition: App running with Java 17 installed
-
-**MSS**
-
-1.  User requests to view a company profile by name
-2.  System retrieves the company profile
-3.  System displays the company name and all stored details
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The specified company does not exist
-    * 1a1. System shows an error message
-
-      Use case ends.
-
-**Use case: Delete a company profile**
-* Actor: Headhunter
-* Precondition: App running with Java 17 installed
+**Use case 10: Delete a company profile**
 
 **MSS**
 
@@ -431,36 +500,120 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The specified company does not exist
-    * 1a1. System shows an error message
+* 2a. System detects that the specified company does not exist
+    * 2a1. System shows company profile does not exist message
 
-      Use case ends.
+    Use case ends.
+
+**Use case 11: List company profile**
+
+**MSS**
+
+1.  User requests to list company profiles
+2.  System displays all contact group members of the specified contact group
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that specified contact group does not exist
+    * 2a1. System shows contact group does not exist message
+
+    Use case ends.
+
+**Use case 12: Add company details to company profile**
+
+**MSS**
+
+1.  User <u>adds a company profile (UC9)</u>
+2.  User requests to add company details to the company profile
+3.  System confirms that the company details has been updated
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that the specified company profile does not exist
+    * 2a1. System shows company profile does not exist message
+* 2b. System detects that the company details already exist in the company profile
+    *  2b1. System shows company details already exist message
+
+    Use case ends.
+
+**Use case 13: Delete company details to company profile**
+
+**MSS**
+
+1.  User requests to delete a company detail from a company profile
+2.  System removes the company detail from the company profile
+3.  System confirms that the company detail has been deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. System detects that the specified company does not exist
+    * 2a1. System shows company profile does not exist message
+* 2b. System detects that the company detail does not exist in the company profile
+    * 2b1. System shows company detail does not exist message
+
+    Use case ends.
+
+**Use case 14: List a specific company profile**
+
+**MSS**
+
+1.  User requests to view a company profile by name
+2.  System retrieves the company profile
+3.  System displays the company name and all stored details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. System detects that the specified company does not exist
+    * 1a1. System shows company profile does not exist message
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The system should be able to run without internet access.
-5.  The system should respond to the user within 2 seconds for all user commands.
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should be able to run without internet access.
+5. The system should respond to the user within 2 seconds for all valid user commands.
+6. The system should remain responsive while processing invalid user commands and should return an appropriate error message.
+7. The system should be able to support case-insensitive unique identifiers for contacts, contact groups and company profiles.
 
-### Company Profile Non-Functional Requirements
-1.  The company profile feature should support keyboard-first usage for all core actions
-2.  The system should complete common company profile operations such as adding, deleting, listing, and viewing a company profile within 2 seconds under normal usage conditions
-3.  The application should remain responsive while processing invalid company profile commands and should return an appropriate error message promptly
-4.  The company profile feature should support at least 50 company profiles without significant degradation in response time
+### Contact Non-Functional Requirements
+
+1. The system should be able to support up to 1000 contacts without exceeding the 2 seconds response time limit for operations such as adding, deleting, listing of contacts.
 
 ### Contact Group Non-Functional Requirements
-1.  The system should be able to support up to 500 contact groups 
+
+1. The system should be able to support at least 500 contact groups without exceeding the 2 seconds response time limit for operations such as adding, deleting, listing of contact groups.
+2. The system should be able to support at least 100 contacts in a contact group without exceeding the 2 seconds response time limit for operations such as adding, deleting, listing of contact group members.
+
+### Company Profile Non-Functional Requirements
+
+1. The system should support at least 100 company profiles without exceeding the 2 seconds response time limit for operations such as adding, deleting, listing of company profiles.
 
 *{More to be added}* 
 
 ### Glossary
 
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Above average typing speed**: 40 words per minute (wpm) or more for regular English text (i.e. not code, not system admin commands)
+* **Valid user command**: A user command that is correctly formatted and does not violate any constraints of the system.
+* **Invalid user command**: A user command that is incorrectly formatted or violates constraints of the system.
+* **Contact**: A stored record representing a potential candidate that the headhunter is recruiting for.
 * **Contact Group**: A tag used to identify different contacts and group similar contacts. A contact group can have none to many contacts.
 * **Company Profile**: A stored record representing a client company that the headhunter is recruiting for.
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -481,16 +634,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -498,16 +651,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -515,4 +668,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
