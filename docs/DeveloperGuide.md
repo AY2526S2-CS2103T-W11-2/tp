@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -14,6 +14,7 @@
 ## **Acknowledgements**
 
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -287,16 +288,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                    | So that I can…​                                                        |
-|----------|--------------------------------------------|---------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                |                                                                        |
-| `* * *`  | user                                       | delete a person                 | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name           | locate details of persons without having to go through the entire list |
-| `* * *`  | Headhunter                                 | create a new contact group      |                                                                        |
-| `* * *`  | Headhunter                                 | add a person to a contact group | organise my contacts into groups                                       |
-| `* *`    | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name            | locate a person easily                                                 |
+| Priority | As a …​    | I want to …​                  | So that I can…​                                                                        |
+|----------|------------|-------------------------------|----------------------------------------------------------------------------------------|
+| `* * *`  | Headhunter | add new candidate contacts    | build a database of potential hires for future placements                              |
+| `* * *`  | Headhunter | delete contacts               | keep my database uncluttered by removing irrelevant candidates contacts                |
+| `* * *`  | Headhunter | list contacts                 | easily browse my talent pool to locate specific individuals                            |
+| `* * *`  | Headhunter | add contact groups            | keep track of which candidates are headhunted for the companies                        |
+| `* * *`  | Headhunter | delete contact groups         | remove the group for a role when it is already filled                                  |
+| `* * *`  | Headhunter | list contact groups           | view a complete overview of all the job groups I have added to the system              |
+| `* * *`  | Headhunter | list contact group members    | easily evaluate and compare all shortlisted candidates for a specific open position    |
+| `* * *`  | Headhunter | add company profile           | keep track of the companies I am headhunting for                                       |
+| `* * *`  | Headhunter | delete company profile        | remove the companies that have stopped using my headhunting services                   |
+| `* * *`  | Headhunter | list specific company profile | review all the active job placements that particular client has hired me to fill       |
+| `* * *`  | Headhunter | list all company profile      | view all companies I am headhunting for to get a high-level overview of my client base |
 
 *{More to be added}*
 
