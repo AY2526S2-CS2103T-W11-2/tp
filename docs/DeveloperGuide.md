@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HitList` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -324,6 +324,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+      For the following use cases (unless otherwise specified):
+* Actor: Headhunter
+* Precondition: App is running
+* System is the HitList
+
+**Use case: Add a contact group**
+* Precondition: App running with Java 17 installed
+* 
+**MSS**
+
+1. User requests to add a contact group 
+2. System creates the contact group 
+3. System informs user that the contact group has been created
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. System detects that a company profile with the same name already exists 
+* 1a1. System informs user of the error
+  Use case ends.
+
+**Use case: Delete a contact group**
+* Precondition: App running with Java 17 installed
+* 
+**MSS**
+
+1. User requests to delete a contact group 
+2. System deletes the contact group 
+3. System informs user that the contact group has been deleted
+   Use case ends.
+
+**Extensions**
+
+* 1a. System detects that the contact group does not exist.
+* 1a1. System informs user of the error.
+Use case ends.
 
 **Use case: Add a company profile**
 * Actor: Headhunter
