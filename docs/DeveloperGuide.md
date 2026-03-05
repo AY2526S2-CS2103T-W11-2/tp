@@ -325,6 +325,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Add a company profile**
+* Actor: Headhunter
+* Precondition: App running with Java 17 installed
+
+**MSS**
+
+1.  User requests to add a company profile
+2.  System creates the company profile
+3.  System confirms that the company profile has been created
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. A company profile with the same name already exists
+  * 1a1. System shows an error message
+
+    Use case ends.
+
+**Use case: View a company profile**
+* Actor: Headhunter
+* Precondition: App running with Java 17 installed
+
+**MSS**
+
+1.  User requests to view a company profile by name
+2.  System retrieves the company profile
+3.  System displays the company name and all stored details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified company does not exist
+    * 1a1. System shows an error message
+
+      Use case ends.
+
+**Use case: Delete a company profile**
+* Actor: Headhunter
+* Precondition: App running with Java 17 installed
+
+**MSS**
+
+1.  User requests to delete a company profile
+2.  System removes the company profile
+3.  System confirms that the company profile has been deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified company does not exist
+    * 1a1. System shows an error message
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -333,12 +390,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+### Company Profile Non-Functional Requirements
+1.  The company profile feature should support keyboard-first usage for all core actions
+2.  The system should complete common company profile operations such as adding, deleting, listing, and viewing a company profile within 2 seconds under normal usage conditions
+3.  The application should remain responsive while processing invalid company profile commands and should return an appropriate error message promptly
+4.  The company profile feature should support at least 50 company profiles without significant degradation in response time
+
+*{More to be added}* 
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Company Profile**: A stored record representing a client company that the headhunter is recruiting for
 
 --------------------------------------------------------------------------------------------------------------------
 
