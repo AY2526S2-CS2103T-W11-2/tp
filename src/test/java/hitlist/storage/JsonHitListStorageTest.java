@@ -47,12 +47,12 @@ public class JsonHitListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readHitList("notJsonFormatAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readHitList("notJsonFormatHitList.json"));
     }
 
     @Test
     public void readHitList_invalidPersonHitList_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readHitList("invalidPersonAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readHitList("invalidPersonHitList.json"));
     }
 
     @Test
@@ -64,40 +64,40 @@ public class JsonHitListStorageTest {
     public void readAndSaveHitList_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempHitList.json");
         HitList original = getTypicalHitList();
-        JsonHitListStorage jsonAddressBookStorage = new JsonHitListStorage(filePath);
+        JsonHitListStorage jsonHitListStorage = new JsonHitListStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveHitList(original, filePath);
-        ReadOnlyHitList readBack = jsonAddressBookStorage.readHitList(filePath).get();
+        jsonHitListStorage.saveHitList(original, filePath);
+        ReadOnlyHitList readBack = jsonHitListStorage.readHitList(filePath).get();
         assertEquals(original, new HitList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveHitList(original, filePath);
-        readBack = jsonAddressBookStorage.readHitList(filePath).get();
+        jsonHitListStorage.saveHitList(original, filePath);
+        readBack = jsonHitListStorage.readHitList(filePath).get();
         assertEquals(original, new HitList(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveHitList(original); // file path not specified
-        readBack = jsonAddressBookStorage.readHitList().get(); // file path not specified
+        jsonHitListStorage.saveHitList(original); // file path not specified
+        readBack = jsonHitListStorage.readHitList().get(); // file path not specified
         assertEquals(original, new HitList(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullHitList_throwsNullPointerException() {
+    public void saveHitList_nullHitList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveHitList(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code HitList} at the specified {@code filePath}.
      */
-    private void saveHitList(ReadOnlyHitList addressBook, String filePath) {
+    private void saveHitList(ReadOnlyHitList hitList, String filePath) {
         try {
             new JsonHitListStorage(Paths.get(filePath))
-                    .saveHitList(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveHitList(hitList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

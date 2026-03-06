@@ -45,8 +45,8 @@ public class JsonHitListStorage implements HitListStorage {
     public Optional<ReadOnlyHitList> readHitList(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableHitList> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableHitList.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonHitListStorage implements HitListStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableHitList(addressBook), filePath);
     }
 
 }

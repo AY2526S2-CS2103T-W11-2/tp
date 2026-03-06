@@ -17,26 +17,26 @@ import hitlist.model.person.Person;
  * An Immutable HitList that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableHitList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHitList} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableHitList(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyHitList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableHitList}.
      */
-    public JsonSerializableAddressBook(ReadOnlyHitList source) {
+    public JsonSerializableHitList(ReadOnlyHitList source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
