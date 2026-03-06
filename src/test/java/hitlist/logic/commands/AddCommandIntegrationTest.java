@@ -2,7 +2,7 @@ package hitlist.logic.commands;
 
 import static hitlist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static hitlist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHitList(), new UserPrefs());
     }
 
     @Test

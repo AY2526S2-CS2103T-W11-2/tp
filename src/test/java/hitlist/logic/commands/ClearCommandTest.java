@@ -1,7 +1,7 @@
 package hitlist.logic.commands;
 
 import static hitlist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalHitList(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHitList(), new UserPrefs());
         expectedModel.setHitList(new HitList());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

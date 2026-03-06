@@ -25,7 +25,7 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         HitList addressBookFromFile = dataFromFile.toModelType();
-        HitList typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        HitList typicalPersonsAddressBook = TypicalPersons.getTypicalHitList();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

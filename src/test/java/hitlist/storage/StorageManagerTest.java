@@ -2,7 +2,7 @@ package hitlist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import java.nio.file.Path;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonHitListStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonHitListStorageTest} class.
          */
-        HitList original = getTypicalAddressBook();
+        HitList original = getTypicalHitList();
         storageManager.saveHitList(original);
         ReadOnlyHitList retrieved = storageManager.readHitList().get();
         assertEquals(original, new HitList(retrieved));

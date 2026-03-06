@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code HitList} with all the typical persons.
      */
-    public static HitList getTypicalAddressBook() {
+    public static HitList getTypicalHitList() {
         HitList ab = new HitList();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

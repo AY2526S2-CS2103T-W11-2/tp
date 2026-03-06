@@ -7,7 +7,7 @@ import static hitlist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static hitlist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static hitlist.testutil.Assert.assertThrows;
 import static hitlist.testutil.TypicalPersons.ALICE;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        HitList newData = getTypicalAddressBook();
+        HitList newData = getTypicalHitList();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }

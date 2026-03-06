@@ -6,7 +6,7 @@ import static hitlist.testutil.Assert.assertThrows;
 import static hitlist.testutil.TypicalPersons.ALICE;
 import static hitlist.testutil.TypicalPersons.HOON;
 import static hitlist.testutil.TypicalPersons.IDA;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,19 +51,19 @@ public class JsonHitListStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonHitList_throwDataLoadingException() {
+    public void readHitList_invalidPersonHitList_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readHitList("invalidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonHitList_throwDataLoadingException() {
+    public void readHitList_invalidAndValidPersonHitList_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readHitList("invalidAndValidPersonHitList.json"));
     }
 
     @Test
     public void readAndSaveHitList_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        HitList original = getTypicalAddressBook();
+        Path filePath = testFolder.resolve("TempHitList.json");
+        HitList original = getTypicalHitList();
         JsonHitListStorage jsonAddressBookStorage = new JsonHitListStorage(filePath);
 
         // Save in new file and read back

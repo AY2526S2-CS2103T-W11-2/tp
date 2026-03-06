@@ -8,7 +8,7 @@ import static hitlist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static hitlist.testutil.TypicalPersons.CARL;
 import static hitlist.testutil.TypicalPersons.ELLE;
 import static hitlist.testutil.TypicalPersons.FIONA;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import hitlist.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHitList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalHitList(), new UserPrefs());
 
     @Test
     public void equals() {

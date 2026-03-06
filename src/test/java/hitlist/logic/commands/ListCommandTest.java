@@ -3,7 +3,7 @@ package hitlist.logic.commands;
 import static hitlist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static hitlist.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static hitlist.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHitList(), new UserPrefs());
         expectedModel = new ModelManager(model.getHitList(), new UserPrefs());
     }
 

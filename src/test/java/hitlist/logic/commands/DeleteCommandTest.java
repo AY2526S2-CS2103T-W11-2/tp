@@ -8,7 +8,7 @@ import static hitlist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static hitlist.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static hitlist.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static hitlist.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static hitlist.testutil.TypicalPersons.getTypicalAddressBook;
+import static hitlist.testutil.TypicalPersons.getTypicalHitList;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import hitlist.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHitList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
