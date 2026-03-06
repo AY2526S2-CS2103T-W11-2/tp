@@ -11,7 +11,6 @@ import hitlist.commons.util.FileUtil;
 import hitlist.commons.util.ToStringBuilder;
 import javafx.application.Application;
 
-
 /**
  * Represents the parsed command-line parameters given to the application.
  */

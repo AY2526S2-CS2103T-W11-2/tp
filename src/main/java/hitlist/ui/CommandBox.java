@@ -1,6 +1,5 @@
 package hitlist.ui;
 
-import hitlist.logic.Logic;
 import hitlist.logic.commands.CommandResult;
 import hitlist.logic.commands.exceptions.CommandException;
 import hitlist.logic.parser.exceptions.ParseException;
@@ -78,7 +77,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see Logic#execute(String)
+         * @see hitlist.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
