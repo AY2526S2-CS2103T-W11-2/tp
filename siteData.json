@@ -120,6 +120,7 @@
         "listing-all-contact-list": "Listing all contact : list",
         "locating-contact-find": "Locating contact: find",
         "adding-a-company-cmpadd": "Adding a Company : cmpadd",
+        "deleting-a-company-cmpdel": "Deleting a Company : cmpdel",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
