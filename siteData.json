@@ -119,6 +119,7 @@
         "deleting-a-contact-delete": "Deleting a contact : delete",
         "listing-all-contact-list": "Listing all contact : list",
         "locating-contact-find": "Locating contact: find",
+        "deleting-a-contact-group-grpdel": "Deleting a contact group : grpdel",
         "adding-a-company-cmpadd": "Adding a Company : cmpadd",
         "deleting-a-company-cmpdel": "Deleting a Company : cmpdel",
         "listing-all-companies-cmplist": "Listing all Companies : cmplist",
