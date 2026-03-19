@@ -121,6 +121,7 @@
         "locating-contact-find": "Locating contact: find",
         "adding-a-company-cmpadd": "Adding a Company : cmpadd",
         "deleting-a-company-cmpdel": "Deleting a Company : cmpdel",
+        "listing-all-companies-cmplist": "Listing all Companies : cmplist",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
