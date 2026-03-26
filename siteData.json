@@ -123,6 +123,7 @@
         "deleting-a-contact-group-grpdel": "Deleting a contact group : grpdel",
         "listing-contacts-in-a-contact-group-grplist": "Listing contacts in a contact group : grplist",
         "assigning-a-contact-to-a-contact-group-grpassign": "Assigning a contact to a contact group : grpassign",
+        "unassigning-a-contact-from-a-contact-group-grpunassign": "Unassigning a contact from a contact group : grpunassign",
         "adding-a-company-cmpadd": "Adding a company : cmpadd",
         "deleting-a-company-cmpdel": "Deleting a company : cmpdel",
         "listing-all-companies-cmplist": "Listing all Companies : cmplist",
