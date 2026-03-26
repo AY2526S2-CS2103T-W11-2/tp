@@ -127,6 +127,7 @@
         "deleting-a-company-cmpdel": "Deleting a company : cmpdel",
         "listing-all-companies-cmplist": "Listing all Companies : cmplist",
         "adding-a-role-to-a-company-roleadd": "Adding a role to a company : roleadd",
+        "deleting-a-role-from-a-company-roledel": "Deleting a role from a company : roledel",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
