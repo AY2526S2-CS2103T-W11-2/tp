@@ -33,10 +33,16 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" CompanyListPanel
+MainWindow *-down-> "1" RoleListPanel
+MainWindow *-down-> "1" GroupListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+CompanyListPanel -down-> "*" CompanyListCard
+RoleListPanel -down-> "*" RoleListCard
+GroupListPanel -down-> "*" GroupListCard
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +50,19 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
+CompanyListPanel --|> UiPart
+CompanyListCard --|> UiPart
+RoleListPanel --|> UiPart
+RoleListCard --|> UiPart
+GroupListPanel --|> UiPart
+GroupListCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
+CompanyCard ..> Model
+RoleCard ..> Model
+GroupCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
