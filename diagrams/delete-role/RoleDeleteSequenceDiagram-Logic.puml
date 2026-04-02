@@ -1,0 +1,70 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":DeleteCompanyRoleCommandParser" as DeleteCompanyRoleCommandParser LOGIC_COLOR
+participant "d:DeleteCompanyRoleCommand" as DeleteCompanyRoleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("roledel /c Google /r Software Engineer")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("roledel /c Google /r Software Engineer")
+activate HitListParser
+
+create DeleteCompanyRoleCommandParser
+HitListParser -> DeleteCompanyRoleCommandParser
+activate DeleteCompanyRoleCommandParser
+
+DeleteCompanyRoleCommandParser --> HitListParser
+deactivate DeleteCompanyRoleCommandParser
+
+HitListParser -> DeleteCompanyRoleCommandParser : parse(" /c Google /r Software Engineer")
+activate DeleteCompanyRoleCommandParser
+
+create DeleteCompanyRoleCommand
+DeleteCompanyRoleCommandParser -> DeleteCompanyRoleCommand
+activate DeleteCompanyRoleCommand
+
+DeleteCompanyRoleCommand --> DeleteCompanyRoleCommandParser : d
+deactivate DeleteCompanyRoleCommand
+
+DeleteCompanyRoleCommandParser --> HitListParser : d
+deactivate DeleteCompanyRoleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCompanyRoleCommandParser -[hidden]-> HitListParser
+destroy DeleteCompanyRoleCommandParser
+
+HitListParser --> LogicManager : d
+deactivate HitListParser
+
+LogicManager -> DeleteCompanyRoleCommand : execute(m)
+activate DeleteCompanyRoleCommand
+
+DeleteCompanyRoleCommand -> Model : deleteCompanyRole(targetCompany, targetRole)
+activate Model
+
+Model --> DeleteCompanyRoleCommand
+deactivate Model
+
+create CommandResult
+DeleteCompanyRoleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCompanyRoleCommand : r
+deactivate CommandResult
+
+DeleteCompanyRoleCommand --> LogicManager : r
+deactivate DeleteCompanyRoleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

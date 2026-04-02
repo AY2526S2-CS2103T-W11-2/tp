@@ -1,0 +1,18 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:AddCompanyCommand</u>" as AddCompanyCommand LOGIC_COLOR
+object "<u>toAdd:Company</u>" as Company MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+
+LogicManager --> "1" AddCompanyCommand : executes >
+AddCompanyCommand --> "1" Company : contains >
+AddCompanyCommand ..> ModelManager : passes toAdd to >
+
+Company : name = "Google"
+Company : description = "Tech Company"
+@enduml

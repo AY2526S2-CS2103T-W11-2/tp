@@ -1,0 +1,63 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":DeleteCompanyCommandParser" as DeleteCompanyCommandParser LOGIC_COLOR
+participant "d:DeleteCompanyCommand" as DeleteCompanyCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cmpdel /c Google")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("cmpdel /c Google")
+activate HitListParser
+
+create DeleteCompanyCommandParser
+HitListParser -> DeleteCompanyCommandParser
+activate DeleteCompanyCommandParser
+
+DeleteCompanyCommandParser --> HitListParser
+deactivate DeleteCompanyCommandParser
+
+HitListParser -> DeleteCompanyCommandParser : parse(" /c Google")
+activate DeleteCompanyCommandParser
+
+create DeleteCompanyCommand
+DeleteCompanyCommandParser -> DeleteCompanyCommand
+activate DeleteCompanyCommand
+
+DeleteCompanyCommand --> DeleteCompanyCommandParser : d
+deactivate DeleteCompanyCommand
+
+DeleteCompanyCommandParser --> HitListParser : d
+deactivate DeleteCompanyCommandParser
+DeleteCompanyCommandParser -[hidden]-> HitListParser
+destroy DeleteCompanyCommandParser
+
+HitListParser --> LogicManager : d
+deactivate HitListParser
+
+LogicManager -> DeleteCompanyCommand : execute()
+activate DeleteCompanyCommand
+
+DeleteCompanyCommand -> Model : deleteCompany(target)
+activate Model
+
+Model --> DeleteCompanyCommand
+deactivate Model
+
+DeleteCompanyCommand --> LogicManager : result
+deactivate DeleteCompanyCommand
+DeleteCompanyCommand -[hidden]-> LogicManager
+destroy DeleteCompanyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

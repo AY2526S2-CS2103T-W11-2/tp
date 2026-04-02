@@ -1,0 +1,19 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:UniqueCompanyList</u>" as UniqueCompanyList MODEL_COLOR
+
+ModelManager --> "1" HitList
+HitList --> "1" UniqueCompanyList
+
+note right of UniqueCompanyList
+  The Company object representing
+  "Google" has been removed from
+  the list and deleted from memory.
+end note
+@enduml

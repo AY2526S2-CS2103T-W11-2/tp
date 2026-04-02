@@ -1,0 +1,20 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+object "__:AddCompanyRoleCommandParser__" as Parser
+object "__:AddCompanyRoleCommand__" as Command
+object "__targetCompany:Name__" as TargetName
+object "__toAdd:Role__" as Role
+
+Parser ..> Command : creates >
+Command *--> "1" TargetName
+Command *--> "1" Role
+
+TargetName : fullName = "Google"
+Role : name = "Software Engineer"
+Role : description = "Develops Software"
+
+@enduml

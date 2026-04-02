@@ -1,0 +1,24 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes command;
+
+'Since the isValid parses everything, we can group it logically
+if () then ([Command is valid])
+    :Parse company name and description;
+    :Create new Company object;
+
+    if () then ([Company does not exist in HitList])
+        :Add Company to Model;
+        :Save updated HitList to Storage;
+        :Display success message to User;
+    else ([Company already exists])
+        :Display duplicate company error;
+    endif
+
+else ([Command is invalid])
+    :Display invalid command format error;
+endif
+stop
+@enduml

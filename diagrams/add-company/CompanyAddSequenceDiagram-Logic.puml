@@ -1,0 +1,63 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":AddCompanyCommandParser" as AddCompanyCommandParser LOGIC_COLOR
+participant "c:AddCompanyCommand" as AddCompanyCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cmpadd /c Google /d Tech Company")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("cmpadd /c Google /d Tech Company")
+activate HitListParser
+
+create AddCompanyCommandParser
+HitListParser -> AddCompanyCommandParser
+activate AddCompanyCommandParser
+
+AddCompanyCommandParser --> HitListParser
+deactivate AddCompanyCommandParser
+
+HitListParser -> AddCompanyCommandParser : parse(" /c Google /d Tech Company")
+activate AddCompanyCommandParser
+
+create AddCompanyCommand
+AddCompanyCommandParser -> AddCompanyCommand
+activate AddCompanyCommand
+
+AddCompanyCommand --> AddCompanyCommandParser : c
+deactivate AddCompanyCommand
+
+AddCompanyCommandParser --> HitListParser : c
+deactivate AddCompanyCommandParser
+AddCompanyCommandParser -[hidden]-> HitListParser
+destroy AddCompanyCommandParser
+
+HitListParser --> LogicManager : c
+deactivate HitListParser
+
+LogicManager -> AddCompanyCommand : execute()
+activate AddCompanyCommand
+
+AddCompanyCommand -> Model : addCompany(toAdd)
+activate Model
+
+Model --> AddCompanyCommand
+deactivate Model
+
+AddCompanyCommand --> LogicManager : result
+deactivate AddCompanyCommand
+AddCompanyCommand -[hidden]-> LogicManager
+destroy AddCompanyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

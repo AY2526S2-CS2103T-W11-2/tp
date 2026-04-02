@@ -1,0 +1,28 @@
+@startuml
+!include ../style.puml
+
+start
+:User executes `roleadd` command;
+
+if () then ([valid format])
+    :Parse company name, \nrole name, and role description;
+    :Create new Role object;
+
+    if () then ([company exists in HitList])
+        if () then ([role does not exist in company's role list])
+            :Add Role to target Company in Model;
+            :Save updated HitList to Storage;
+            :Display success message to User;
+        else ([role already exists])
+            :Throw CommandException \n(Duplicate Role);
+        endif
+    else ([company not found])
+        :Throw CommandException \n(Company Not Found);
+    endif
+
+else ([invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:UniqueCompanyList</u>" as UniqueCompanyList MODEL_COLOR
+object "<u>:Company</u>" as Company MODEL_COLOR
+
+ModelManager --> "1" HitList
+HitList --> "1" UniqueCompanyList
+UniqueCompanyList --> "*" Company : contains >
+
+Company : name = "Google"
+Company : description = "Tech Company"
+@enduml

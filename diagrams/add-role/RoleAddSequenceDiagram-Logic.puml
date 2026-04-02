@@ -1,0 +1,63 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":AddRoleCommandParser" as AddRoleCommandParser LOGIC_COLOR
+participant "r:AddRoleCommand" as AddRoleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("roleadd /r software tester /d testing software /c Google")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("roleadd /r software tester /d testing software /c Google")
+activate HitListParser
+
+create AddRoleCommandParser
+HitListParser -> AddRoleCommandParser
+activate AddRoleCommandParser
+
+AddRoleCommandParser --> HitListParser
+deactivate AddRoleCommandParser
+
+HitListParser -> AddRoleCommandParser : parse(" /r software tester /d testing software /c Google")
+activate AddRoleCommandParser
+
+create AddRoleCommand
+AddRoleCommandParser -> AddRoleCommand
+activate AddRoleCommand
+
+AddRoleCommand --> AddRoleCommandParser : r
+deactivate AddRoleCommand
+
+AddRoleCommandParser --> HitListParser : r
+deactivate AddRoleCommandParser
+AddRoleCommandParser -[hidden]-> HitListParser
+destroy AddRoleCommandParser
+
+HitListParser --> LogicManager : r
+deactivate HitListParser
+
+LogicManager -> AddRoleCommand : execute()
+activate AddRoleCommand
+
+AddRoleCommand -> Model : addRole(toAdd)
+activate Model
+
+Model --> AddRoleCommand
+deactivate Model
+
+AddRoleCommand --> LogicManager : result
+deactivate AddRoleCommand
+AddRoleCommand -[hidden]-> LogicManager
+destroy AddRoleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

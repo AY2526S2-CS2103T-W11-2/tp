@@ -1,0 +1,18 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:AddCompanyCommandParser</u>" as AddCompanyCommandParser LOGIC_COLOR
+object "<u>c:AddCompanyCommand</u>" as AddCompanyCommand LOGIC_COLOR
+object "<u>toAdd:Company</u>" as Company MODEL_COLOR
+
+HitListParser ..> AddCompanyCommandParser : creates >
+AddCompanyCommandParser ..> AddCompanyCommand : creates >
+AddCompanyCommand --> "1" Company : contains >
+
+Company : name = "Google"
+Company : description = "Tech Company"
+@enduml

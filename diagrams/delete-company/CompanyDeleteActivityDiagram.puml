@@ -1,0 +1,22 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes command;
+
+if () then ([Command format is valid])
+    :Parse target (Index or Name);
+
+    if () then ([Target Company exists in Model])
+        :Delete Company from Model;
+        :Save updated HitList to Storage;
+        :Display success message to User;
+    else ([Target Company does not exist])
+        :Display company not found error;
+    endif
+
+else ([Command format is invalid])
+    :Display invalid command format error;
+endif
+stop
+@enduml

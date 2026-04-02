@@ -1,0 +1,28 @@
+@startuml
+!include ../style.puml
+
+start
+:User executes command;
+
+if () then ([valid format])
+    :Parse target company (name or index)\nand role identifier;
+    :Create DeleteCompanyRoleCommand;
+
+    if () then ([target company exists in HitList])
+        if () then ([target role exists in company])
+            :Remove Role from target \nCompany in Model;
+            :Save updated HitList to Storage;
+            :Display success message to User;
+        else ([role not found])
+            :Throw CommandException \n(Role Not Found);
+        endif
+    else ([company not found])
+        :Throw CommandException \n(Company Not Found);
+    endif
+
+else ([invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

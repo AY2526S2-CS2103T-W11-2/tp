@@ -1,0 +1,23 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>targetCompany:Company</u>" as Company MODEL_COLOR
+object "<u>:RoleList</u>" as RoleList MODEL_COLOR
+
+ModelManager --> "1" HitList
+HitList *--> "*" Company : contains >
+Company *--> "1" RoleList
+
+note right of RoleList
+  The Role object representing
+  "Software Engineer" has been removed
+  from the list and deleted from memory.
+end note
+
+Company : name = "Google"
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>d:DeleteCompanyCommand</u>" as DeleteCompanyCommand LOGIC_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:UniqueCompanyList</u>" as UniqueCompanyList MODEL_COLOR
+object "<u>target:Company</u>" as Company MODEL_COLOR
+
+LogicManager --> "1" DeleteCompanyCommand : executes >
+ModelManager --> "1" HitList
+HitList --> "1" UniqueCompanyList
+UniqueCompanyList --> "*" Company : contains >
+
+DeleteCompanyCommand : targetName = "Google"
+Company : name = "Google"
+Company : description = "Tech Company"
+@enduml

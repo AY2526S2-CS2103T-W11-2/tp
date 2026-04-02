@@ -1,0 +1,15 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+show objects
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:DeleteCompanyCommandParser</u>" as DeleteCompanyCommandParser LOGIC_COLOR
+object "<u>d:DeleteCompanyCommand</u>" as DeleteCompanyCommand LOGIC_COLOR
+
+HitListParser ..> DeleteCompanyCommandParser : creates >
+DeleteCompanyCommandParser ..> DeleteCompanyCommand : creates >
+
+DeleteCompanyCommand : targetName = "Google"
+@enduml
