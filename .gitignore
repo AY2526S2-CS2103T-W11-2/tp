@@ -38,3 +38,7 @@ docs/_markbind/logs/
 auto-save-list
 tramp
 .\#*
+
+# Generated Java bytecode / IDE output
+*.class
+/bin/
