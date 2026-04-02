@@ -61,7 +61,7 @@ public class CompanyName {
         }
 
         CompanyName otherName = (CompanyName) other;
-        return companyName.equals(otherName.companyName);
+        return companyName.equalsIgnoreCase(otherName.companyName);
     }
 
     @Override

@@ -104,6 +104,13 @@ public class CompanyTest {
         // same object -> returns true
         assertTrue(company.isSameCompany(company));
 
+        // different description -> returns true
+        assertTrue(company.isSameCompany(
+                new CompanyBuilder()
+                        .withName(VALID_COMPANY_NAME_GOOGLE)
+                        .withDescription(VALID_COMPANY_DESCRIPTION_META)
+                        .build()));
+
         // null -> returns false
         assertFalse(company.isSameCompany(null));
 
@@ -119,13 +126,6 @@ public class CompanyTest {
                 new CompanyBuilder()
                         .withName(VALID_COMPANY_NAME_META)
                         .withDescription(VALID_COMPANY_DESCRIPTION_GOOGLE)
-                        .build()));
-
-        // different description -> returns false
-        assertFalse(company.isSameCompany(
-                new CompanyBuilder()
-                        .withName(VALID_COMPANY_NAME_GOOGLE)
-                        .withDescription(VALID_COMPANY_DESCRIPTION_META)
                         .build()));
     }
 

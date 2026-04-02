@@ -44,7 +44,7 @@ public class SampleDataUtilTest {
     public void getSampleCompanies_returnsValidCompanies() {
         Company[] companies = SampleDataUtil.getSampleCompanies();
 
-        assertEquals(5, companies.length);
+        assertEquals(6, companies.length);
 
         for (Company company : companies) {
             assertTrue(company.getName().toString().length() > 0);

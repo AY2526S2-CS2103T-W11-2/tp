@@ -120,11 +120,11 @@ public class Company {
     }
 
     /**
-    * Returns true if both companies have the same name and description.
+    * Returns true if both companies have the same name.
     * This defines a weaker notion of equality between two companies.
     *
     * @param otherCompany The company to compare with this company.
-    * @return True if both companies have the same name and description, false otherwise.
+    * @return True if both companies have the same name, false otherwise.
     */
     public boolean isSameCompany(Company otherCompany) {
         if (otherCompany == this) {
@@ -132,8 +132,7 @@ public class Company {
         }
 
         return otherCompany != null
-                && this.name.equals(otherCompany.name)
-                && this.description.equals(otherCompany.description);
+                && this.name.equals(otherCompany.name);
     }
 
     @Override

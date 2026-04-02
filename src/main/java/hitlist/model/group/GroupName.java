@@ -56,7 +56,7 @@ public class GroupName {
         }
 
         GroupName otherGroupName = (GroupName) other;
-        return fullName.equals(otherGroupName.fullName);
+        return fullName.toUpperCase().equals(otherGroupName.fullName.toUpperCase());
     }
 
     @Override

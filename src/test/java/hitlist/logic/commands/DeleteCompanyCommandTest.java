@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import hitlist.logic.Messages;
@@ -32,7 +34,17 @@ import hitlist.model.company.CompanyName;
  */
 public class DeleteCompanyCommandTest {
 
-    private Model model = new ModelManager(getTypicalHitList(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalHitList(), new UserPrefs());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        model = null;
+    }
 
     @Test
     public void constructor_nullCompanyName_throwsNullPointerException() {

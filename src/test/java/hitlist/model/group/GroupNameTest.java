@@ -51,6 +51,9 @@ public class GroupNameTest {
         // same object -> returns true
         assertTrue(name.equals(name));
 
+        // different case -> returns true
+        assertTrue(name.equals(new GroupName("Valid group name")));
+
         // null -> returns false
         assertFalse(name.equals(null));
 
@@ -59,8 +62,5 @@ public class GroupNameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new GroupName("Other Valid Group Name")));
-
-        // different case -> returns false
-        assertFalse(name.equals(new GroupName("Valid group name")));
     }
 }

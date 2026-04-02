@@ -47,13 +47,13 @@ public class GroupTest {
         // same object -> returns true
         assertTrue(STUDENTS.isSameGroup(STUDENTS));
 
-        // null -> returns false
-        assertFalse(STUDENTS.isSameGroup(null));
-
-        // name differs in case -> returns false
+        // name differs in case -> returns true
         Group groupA = new Group(new GroupName("test"));
         Group groupB = new Group(new GroupName("Test"));
-        assertFalse(groupA.isSameGroup(groupB));
+        assertTrue(groupA.isSameGroup(groupB));
+
+        // null -> returns false
+        assertFalse(STUDENTS.isSameGroup(null));
     }
 
     @Test
