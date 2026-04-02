@@ -7,6 +7,7 @@ import static hitlist.ui.UiPaneVisibility.SHOW_ROLE_LIST;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import hitlist.commons.core.index.Index;
 import hitlist.commons.util.ToStringBuilder;
@@ -68,7 +69,7 @@ public class DeleteCompanyRoleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Company company = model.getCompany(companyName)
+        Company company = findCompanyIgnoreCase(model, companyName)
                 .orElseThrow(() -> new CommandException(
                         String.format(MESSAGE_COMPANY_NOT_FOUND, companyName)));
 
@@ -84,6 +85,12 @@ public class DeleteCompanyRoleCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 roleToDelete.getRoleName(), company.getName()), SHOW_ROLE_LIST);
+    }
+
+    private Optional<Company> findCompanyIgnoreCase(Model model, CompanyName targetCompanyName) {
+        return model.getHitList().getCompanyList().stream()
+                .filter(company -> company.getName().toString().equalsIgnoreCase(targetCompanyName.toString()))
+                .findFirst();
     }
 
     private Role deleteByIndex(Company company) throws CommandException {

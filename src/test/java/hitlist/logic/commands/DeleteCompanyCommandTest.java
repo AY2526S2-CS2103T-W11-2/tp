@@ -49,7 +49,6 @@ public class DeleteCompanyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getHitList(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
-
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
@@ -59,7 +58,6 @@ public class DeleteCompanyCommandTest {
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(invalidCompanyName);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_COMPANY_NOT_FOUND, invalidCompanyName);
-
         assertCommandFailure(deleteCompanyCommand, model, expectedMessage);
     }
 
@@ -79,7 +77,6 @@ public class DeleteCompanyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getHitList(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
-
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
@@ -107,18 +104,22 @@ public class DeleteCompanyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getHitList(), new UserPrefs());
         expectedModel.deleteCompany(companyToDelete);
-
         assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_caseInsensitiveCompanyName_throwsCommandException() {
-        CompanyName lowercaseCompanyName = new CompanyName("google inc.");
+    public void execute_caseInsensitiveCompanyName_success() throws Exception {
+        Company companyToDelete = GOOGLE;
+        CompanyName lowercaseCompanyName = new CompanyName(companyToDelete.getName().toString().toLowerCase());
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(lowercaseCompanyName);
 
-        String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_COMPANY_NOT_FOUND, lowercaseCompanyName);
+        String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_DELETE_COMPANY_SUCCESS,
+                Messages.formatCompany(companyToDelete));
 
-        assertCommandFailure(deleteCompanyCommand, model, expectedMessage);
+        ModelManager expectedModel = new ModelManager(model.getHitList(), new UserPrefs());
+        expectedModel.deleteCompany(companyToDelete);
+
+        assertCommandSuccess(deleteCompanyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -127,7 +128,6 @@ public class DeleteCompanyCommandTest {
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(partialCompanyName);
 
         String expectedMessage = String.format(DeleteCompanyCommand.MESSAGE_COMPANY_NOT_FOUND, partialCompanyName);
-
         assertCommandFailure(deleteCompanyCommand, model, expectedMessage);
     }
 
@@ -139,20 +139,15 @@ public class DeleteCompanyCommandTest {
         DeleteCompanyCommand deleteGoogleCommand = new DeleteCompanyCommand(companyNameGoogle);
         DeleteCompanyCommand deleteMicrosoftCommand = new DeleteCompanyCommand(companyNameMicrosoft);
 
-        // same object -> returns true
         assertTrue(deleteGoogleCommand.equals(deleteGoogleCommand));
 
-        // same values -> returns true
         DeleteCompanyCommand deleteGoogleCommandCopy = new DeleteCompanyCommand(companyNameGoogle);
         assertTrue(deleteGoogleCommand.equals(deleteGoogleCommandCopy));
 
-        // different types -> returns false
         assertFalse(deleteGoogleCommand.equals(1));
 
-        // null -> returns false
         assertFalse(deleteGoogleCommand.equals(null));
 
-        // different company -> returns false
         assertFalse(deleteGoogleCommand.equals(deleteMicrosoftCommand));
     }
 
@@ -160,18 +155,21 @@ public class DeleteCompanyCommandTest {
     public void toStringMethod() {
         CompanyName companyName = GOOGLE.getName();
         DeleteCompanyCommand deleteCompanyCommand = new DeleteCompanyCommand(companyName);
+
         String expectedString = DeleteCompanyCommand.class.getCanonicalName()
                 + "{companyName=" + companyName + "}";
+
         assertEquals(expectedString, deleteCompanyCommand.toString());
     }
 
     /**
-     * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * Executes the given {@code command}, confirms that
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
      * - the {@code actualModel} matches {@code expectedModel}
      */
     private void assertCommandSuccess(DeleteCompanyCommand command, Model actualModel, String expectedMessage,
             Model expectedModel) throws CommandException {
+
         CommandResult result = command.execute(actualModel);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, actualModel);
@@ -189,6 +187,7 @@ public class DeleteCompanyCommandTest {
      * A Model stub that contains a single company.
      */
     private class ModelStubWithCompany extends ModelStub {
+
         private final Company company;
 
         ModelStubWithCompany(Company company) {
@@ -199,9 +198,11 @@ public class DeleteCompanyCommandTest {
         @Override
         public Optional<Company> getCompany(CompanyName companyName) {
             requireNonNull(companyName);
-            if (this.company.getName().equals(companyName)) {
+
+            if (this.company.getName().toString().equalsIgnoreCase(companyName.toString())) {
                 return Optional.of(this.company);
             }
+
             return Optional.empty();
         }
 
@@ -212,7 +213,9 @@ public class DeleteCompanyCommandTest {
 
         @Override
         public ReadOnlyHitList getHitList() {
-            return new HitList();
+            HitList hitList = new HitList();
+            hitList.addCompany(company);
+            return hitList;
         }
     }
 
@@ -220,6 +223,7 @@ public class DeleteCompanyCommandTest {
      * A Model stub that does not contain any company.
      */
     private class ModelStubWithoutCompany extends ModelStub {
+
         @Override
         public Optional<Company> getCompany(CompanyName companyName) {
             requireNonNull(companyName);

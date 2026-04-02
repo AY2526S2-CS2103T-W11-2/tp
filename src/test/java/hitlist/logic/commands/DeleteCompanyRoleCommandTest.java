@@ -38,9 +38,8 @@ public class DeleteCompanyRoleCommandTest {
 
     @Test
     public void execute_validRoleName_success() throws Exception {
-        // Use a shorter unique name (within 30 chars)
         String uniqueName = "DelRoleTest_" + System.currentTimeMillis();
-        // Ensure it's not too long (take last 15 chars if needed)
+
         if (uniqueName.length() > 30) {
             uniqueName = uniqueName.substring(uniqueName.length() - 30);
         }
@@ -51,9 +50,9 @@ public class DeleteCompanyRoleCommandTest {
                 .build();
 
         model.addCompany(companyToModify);
+
         Company modelCompany = model.getCompany(companyToModify.getName()).get();
 
-        // Use existing TypicalRoles which are already validated
         Role testRole1 = TypicalRoles.SOFTWARE_ENGINEER;
         Role testRole2 = TypicalRoles.PRODUCT_MANAGER;
 
@@ -68,17 +67,57 @@ public class DeleteCompanyRoleCommandTest {
                 testRole1.getRoleName(), modelCompany.getName());
 
         CommandResult result = deleteRoleCommand.execute(model);
+
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
         Company actualCompany = model.getCompany(modelCompany.getName()).get();
+
         assertFalse(actualCompany.getUniqueRoleList().contains(testRole1));
         assertTrue(actualCompany.getUniqueRoleList().contains(testRole2));
     }
 
     @Test
+    public void execute_caseInsensitiveCompanyName_success() throws Exception {
+        String uniqueName = "CaseRoleTest_" + System.currentTimeMillis();
+
+        if (uniqueName.length() > 30) {
+            uniqueName = uniqueName.substring(uniqueName.length() - 30);
+        }
+
+        Company companyToModify = new CompanyBuilder()
+                .withName(uniqueName)
+                .withDescription("Test company for case-insensitive delete role")
+                .build();
+
+        model.addCompany(companyToModify);
+
+        Company modelCompany = model.getCompany(companyToModify.getName()).get();
+        Role testRole = TypicalRoles.SOFTWARE_ENGINEER;
+        Role remainingRole = TypicalRoles.PRODUCT_MANAGER;
+
+        modelCompany.getUniqueRoleList().add(testRole);
+        modelCompany.getUniqueRoleList().add(remainingRole);
+
+        CompanyName lowercaseCompanyName = new CompanyName(modelCompany.getName().toString().toLowerCase());
+        DeleteCompanyRoleCommand deleteRoleCommand =
+                new DeleteCompanyRoleCommand(testRole.getRoleName(), lowercaseCompanyName);
+
+        String expectedMessage = String.format(DeleteCompanyRoleCommand.MESSAGE_SUCCESS,
+                testRole.getRoleName(), modelCompany.getName());
+
+        CommandResult result = deleteRoleCommand.execute(model);
+
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+
+        Company actualCompany = model.getCompany(modelCompany.getName()).get();
+        assertFalse(actualCompany.getUniqueRoleList().contains(testRole));
+        assertTrue(actualCompany.getUniqueRoleList().contains(remainingRole));
+    }
+
+    @Test
     public void execute_validRoleIndex_success() throws Exception {
-        // Use a shorter unique name (within 30 chars)
         String uniqueName = "DelRoleIdxTest_" + System.currentTimeMillis();
+
         if (uniqueName.length() > 30) {
             uniqueName = uniqueName.substring(uniqueName.length() - 30);
         }
@@ -91,7 +130,6 @@ public class DeleteCompanyRoleCommandTest {
         model.addCompany(companyToModify);
         Company modelCompany = model.getCompany(companyToModify.getName()).get();
 
-        // Use existing TypicalRoles which are already validated
         Role testRole1 = TypicalRoles.SOFTWARE_ENGINEER;
         Role testRole2 = TypicalRoles.PRODUCT_MANAGER;
 
@@ -105,17 +143,19 @@ public class DeleteCompanyRoleCommandTest {
                 testRole1.getRoleName(), modelCompany.getName());
 
         CommandResult result = deleteRoleCommand.execute(model);
+
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
         Company actualCompany = model.getCompany(modelCompany.getName()).get();
+
         assertFalse(actualCompany.getUniqueRoleList().contains(testRole1));
         assertTrue(actualCompany.getUniqueRoleList().contains(testRole2));
     }
 
     @Test
     public void execute_emptyRoleList_throwsCommandException() {
-        // Use a shorter unique name (within 30 chars)
         String uniqueName = "EmptyRole_" + System.currentTimeMillis();
+
         if (uniqueName.length() > 30) {
             uniqueName = uniqueName.substring(uniqueName.length() - 30);
         }
@@ -126,7 +166,6 @@ public class DeleteCompanyRoleCommandTest {
                 .build();
 
         model.addCompany(company);
-
         DeleteCompanyRoleCommand deleteRoleCommand = new DeleteCompanyRoleCommand(Index.fromOneBased(1),
                 company.getName());
 
@@ -143,6 +182,7 @@ public class DeleteCompanyRoleCommandTest {
         RoleName roleName2 = new RoleName("Product Manager");
         CompanyName companyName1 = new CompanyName("Google");
         CompanyName companyName2 = new CompanyName("Microsoft");
+
         Index index1 = Index.fromOneBased(1);
         Index index2 = Index.fromOneBased(2);
 
@@ -158,6 +198,7 @@ public class DeleteCompanyRoleCommandTest {
         assertTrue(deleteByName1.equals(deleteByName1Copy));
         assertFalse(deleteByName1.equals(1));
         assertFalse(deleteByName1.equals(null));
+
         assertFalse(deleteByName1.equals(deleteByName2));
         assertFalse(deleteByIndex1.equals(deleteByIndex2));
         assertFalse(deleteByIndex1.equals(deleteByIndex1DifferentCompany));
@@ -173,12 +214,15 @@ public class DeleteCompanyRoleCommandTest {
 
         String expectedByName = DeleteCompanyRoleCommand.class.getCanonicalName()
                 + "{roleIndex=null, roleName=" + roleName + ", companyName=" + companyName + "}";
+
         assertEquals(expectedByName, deleteByNameCommand.toString());
 
         Index index = Index.fromOneBased(1);
+
         DeleteCompanyRoleCommand deleteByIndexCommand = new DeleteCompanyRoleCommand(index, companyName);
         String expectedByIndex = DeleteCompanyRoleCommand.class.getCanonicalName()
                 + "{roleIndex=" + index + ", roleName=null, companyName=" + companyName + "}";
+
         assertEquals(expectedByIndex, deleteByIndexCommand.toString());
     }
 }

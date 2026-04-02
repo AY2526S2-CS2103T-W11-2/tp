@@ -4,6 +4,8 @@ import static hitlist.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static hitlist.ui.UiPaneVisibility.SHOW_COMPANY_LIST;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import hitlist.commons.util.ToStringBuilder;
 import hitlist.logic.Messages;
 import hitlist.logic.commands.exceptions.CommandException;
@@ -42,7 +44,7 @@ public class DeleteCompanyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Company companyToDelete = model.getCompany(companyName)
+        Company companyToDelete = findCompanyIgnoreCase(model, companyName)
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_COMPANY_NOT_FOUND, companyName)));
 
         model.deleteCompany(companyToDelete);
@@ -52,13 +54,18 @@ public class DeleteCompanyCommand extends Command {
                         Messages.formatCompany(companyToDelete)), SHOW_COMPANY_LIST);
     }
 
+    private Optional<Company> findCompanyIgnoreCase(Model model, CompanyName targetCompanyName) {
+        return model.getHitList().getCompanyList().stream()
+                .filter(company -> company.getName().toString().equalsIgnoreCase(targetCompanyName.toString()))
+                .findFirst();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof DeleteCompanyCommand)) {
             return false;
         }
