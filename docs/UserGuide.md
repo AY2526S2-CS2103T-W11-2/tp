@@ -31,11 +31,11 @@ HitList is targeted at headhunters who need to manage a large number of contacts
    * `delete 3` : Deletes the 3rd contact shown in the current list.
    * `clear` : Deletes all contacts.
    * `exit` : Exits the app.
-9. Refer to the [Features](#features) below for details of each command.
+9. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 **Notes about the command format:**
 
@@ -49,15 +49,9 @@ HitList is targeted at headhunters who need to manage a large number of contacts
   e.g. if the command specifies `help 123`, it will be interpreted as `help`
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-### Viewing help : `help`
+### Candidate Contacts
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a contact : `add`
+#### Adding a contact : `add`
 
 Adds a contact to the HitList.
 
@@ -75,7 +69,7 @@ Examples:
 
 <img width="738" height="601" alt="Add Betsy Crowe to HitList" src="images/ug/AddContact_Full.png" />
 
-### Editing a contact : `edit`
+#### Editing a contact : `edit`
 
 Edits an existing contact in the HitList.
 
@@ -99,7 +93,7 @@ Examples:
 
 <img width="738" height="601" alt="Edit 2nd Contact Name to Betsy Crowe in HitList" src="images/ug/AfterEdit_Name.png" />
 
-### Deleting a contact : `delete`
+#### Deleting a contact : `delete`
 
 Deletes the specified contact from HitList.
 
@@ -131,7 +125,7 @@ Example:
 <img width="738" height="601" alt="Listing of HitList" src="images/ug/BeforeDelete_ByName.png" />
 <img width="738" height="601" alt="Deleting David Li in HitList" src="images/ug/AfterDelete_ByName.png" />
 
-### Listing all contacts : `list`
+#### Listing all contacts : `list`
 
 Shows a list of all contacts in the HitList.
 
@@ -139,7 +133,7 @@ Format: `list`
 
 <img width="738" height="601" alt="Before Edit of HitList" src="images/ug/List.png" />
 
-### Locating contacts : `find`
+#### Locating contacts : `find`
 
 Finds contacts whose names match any given prefix.
 
@@ -160,7 +154,9 @@ Examples:
 
 <img width="738" height="601" alt="Find Alex and David in HitList" src="images/ug/Find_Alex_David.png" />
 
-### Adding a contact group : `grpadd`
+### Contact Groups
+
+#### Adding a contact group : `grpadd`
 
 Adds a contact group to the HitList.
 
@@ -175,7 +171,7 @@ Examples:
 
 <img width="738" height="601" alt="Creation of group Experienced in HitList" src="images/ug/Grpadd_Experienced.png" />
 
-### Deleting a contact group : `grpdel`
+#### Deleting a contact group : `grpdel`
 
 Deletes the specified contact group from HitList.
 
@@ -196,7 +192,7 @@ Examples:
 >
 > Group Names are currently case-sensitive, so `Students` and `students` are considered different groups. Hence, deleting `students` will not delete the `Students` group.
 
-### Listing contacts in a contact group : `grplist`
+#### Listing contacts in a contact group : `grplist`
 
 Lists all the contacts who are members of a specified contact group.
 
@@ -211,7 +207,7 @@ Examples:
 
 <img width="738" height="601" alt="List group members of Experienced group" src="images/ug/Grplist_Students.png" />
 
-### Assigning a contact to a contact group : `grpassign`
+#### Assigning a contact to a contact group : `grpassign`
 
 Adds an existing contact to an existing contact group.
 
@@ -231,7 +227,7 @@ Examples:
 <img width="738" height="601" alt="Before Assigning Betsy Crowe to Students Group" src="images/ug/BeforeGrpassign_Students.png" />
 <img width="738" height="601" alt="After Assigning Betsy Crowe to Students Group" src="images/ug/AfterGrpassign_Students.png" />
 
-### Unassigning a contact from a contact group : `grpunassign`
+#### Unassigning a contact from a contact group : `grpunassign`
 
 Removes an existing contact from an existing contact group.
 
@@ -245,7 +241,9 @@ Examples:
 * `grpunassign /n Alex Yeoh /g Experienced`
 * `grpunassign /n Betsy Crowe /g Students`
 
-### Adding a company : `cmpadd`
+### Company Profiles
+
+#### Adding a company : `cmpadd`
 
 Adds a company to the HitList.
 
@@ -263,7 +261,7 @@ Examples:
 
 <img width="738" height="601" alt="Creation of company Meta with description Social media giant" src="images/ug/Cmpadd_Meta.png" />
 
-### Deleting a company : `cmpdel`
+#### Deleting a company : `cmpdel`
 
 Deletes the specified company from HitList.
 
@@ -281,7 +279,7 @@ Example:
 
 <img width="738" height="601" alt="Deletion of company Meta" src="images/ug/Cmpdel_Meta" />
 
-### Listing all Companies : `cmplist`
+#### Listing all Companies : `cmplist`
 
 Shows a list of all companies in the hitList.
 
@@ -289,7 +287,7 @@ Format: `cmplist`
 
 <img width="738" height="601" alt="List all companies in HitList" src="images/ug/Cmplist.png" />
 
-### Adding a role to a company : `roleadd`
+#### Adding a role to a company : `roleadd`
 
 Adds a role to a specified existing company in the HitList.
 
@@ -309,7 +307,7 @@ Examples:
 
 <img width="738" height="601" alt="Addition of DevOps Engineers role to company Meta Platforms, Inc." src="images/ug/Roleadd_Devops.png" />
 
-### Deleting a role from a company : `roledel`
+#### Deleting a role from a company : `roledel`
 
 Deletes a role from a specified existing company in the HitList.
 
@@ -330,7 +328,17 @@ Examples:
 
 <img width="738" height="601" alt="Deletion of first role from company Meta Platforms, Inc." src="images/ug/Roledel_Index.png" />
 
-### Clearing all entries : `clear`
+### Others
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Clearing all entries : `clear`
 
 Clears all entries from the HitList.
 
@@ -340,7 +348,7 @@ Format: `clear`
 > This command deletes all contacts, contact groups, companies, and roles from the HitList. Use with caution.
 > The action is irreversible and there is no confirmation prompt before the action is executed.
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
