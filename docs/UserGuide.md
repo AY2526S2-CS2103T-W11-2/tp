@@ -55,19 +55,35 @@ HitList is targeted at headhunters who need to manage a large number of contacts
 
 Adds a contact to the HitList.
 
-Format: `add /n NAME /p PHONE_NUMBER [/e EMAIL] [/a ADDRESS]`
-
-* The `NAME` and `PHONE_NUMBER` parameters are mandatory.
-* All other parameters are optional.
+<box header="Command Format">
+    <code>add</code>
+    <code>/n</code>
+    <popover src="/syntax/Name.md"><code>NAME</code></popover>
+    <code>/p</code>
+    <popover src="/syntax/Phone.md"><code>PHONE_NUMBER</code></popover>
+    <code>[/e</code>
+    <code>EMAIL]</code>
+    <panel header="Parameters">
+        <include src="syntax/Name.md" />
+        <include src="syntax/Phone.md" />
+    </panel>
+</box>
 
 Examples:
-* `add /n John Doe /p 98765432`
+<tabs>
+    <tab header="John">
+        <code>add /n John Doe /p 98765432</code>
+        <br>
+        <img width="738" height="601" alt="Add John Doe to HitList" src="images/ug/AddContact_Optional.png" />
+    </tab>
+    <tab header="Betsy">
+        <code>add /n Betsy Crowe /p 87654321 /e betsy.crowe@gmail.com /a 321, Clementi Rd, 123465</code>
+        <br>
+        <img width="738" height="601" alt="Add Betsy Crowe to HitList" src="images/ug/AddContact_Full.png" />
+    </tab>
+</tabs>
 
-<img width="738" height="601" alt="Add John Doe to HitList" src="images/ug/AddContact_Optional.png" />
-
-* `add /n Betsy Crowe /p 87654321 /e betsy.crowe@gmail.com /a 321, Clementi Rd, 123465`
-
-<img width="738" height="601" alt="Add Betsy Crowe to HitList" src="images/ug/AddContact_Full.png" />
+---
 
 #### Editing a contact : `edit`
 
@@ -411,3 +427,5 @@ _Details coming soon ..._
 | **Delete Role from Company** | `roledel /r ROLE_NAME /c COMPANY_NAME` or `roledel INDEX /c COMPANY_NAME` | `roledel /r "Software Engineer" /c Google Inc.`<br>`roledel 1 /c Google Inc.` |
 | **Clear**                   | `clear`                                                          | `clear`                                                                               |
 | **Exit**                    | `exit`                                                           | `exit`                                                                                |
+
+<include src="/syntax/Parameters.md" />
