@@ -2,17 +2,23 @@
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
 show objects
+show members
 
 object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
 object "<u>c:AddCompanyCommand</u>" as AddCompanyCommand LOGIC_COLOR
 object "<u>toAdd:Company</u>" as Company MODEL_COLOR
 object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
-LogicManager --> "1" AddCompanyCommand : executes >
-AddCompanyCommand --> "1" Company : contains >
+LogicManager --> AddCompanyCommand : executes >
+AddCompanyCommand --> Company : contains >
 AddCompanyCommand ..> ModelManager : passes toAdd to >
 
-Company : name = "Google"
-Company : description = "Tech Company"
+Company : companyName = "Google"
+Company : companyDescription = "Tech Company"
 @enduml

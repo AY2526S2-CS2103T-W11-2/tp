@@ -1,20 +1,26 @@
 @startuml
 !include ../style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
+skinparam ArrowFontStyle plain
 
-object "__:AddCompanyRoleCommandParser__" as Parser
-object "__:AddCompanyRoleCommand__" as Command
-object "__targetCompany:Name__" as TargetName
-object "__toAdd:Role__" as Role
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "__:AddCompanyRoleCommandParser__" as Parser LOGIC_COLOR
+object "__:AddCompanyRoleCommand__" as Command LOGIC_COLOR
+object "__targetCompany:Name__" as TargetName MODEL_COLOR
+object "__toAdd:Role__" as Role MODEL_COLOR
 
 Parser ..> Command : creates >
-Command *--> "1" TargetName
-Command *--> "1" Role
+Command *--> TargetName : holds >
+Command *--> Role : holds >
 
-TargetName : fullName = "Google"
-Role : name = "Software Engineer"
-Role : description = "Develops Software"
+TargetName : companyName = "Google"
+Role : roleName = "Software Engineer"
+Role : roleDescription = "Develops software solutions"
 
 @enduml

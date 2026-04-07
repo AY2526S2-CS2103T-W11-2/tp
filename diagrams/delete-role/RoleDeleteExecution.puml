@@ -2,7 +2,13 @@
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
 show objects
+show members
 
 object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
 object "<u>d:DeleteCompanyRoleCommand</u>" as Command LOGIC_COLOR
@@ -12,14 +18,14 @@ object "<u>targetCompany:Company</u>" as Company MODEL_COLOR
 object "<u>:RoleList</u>" as RoleList MODEL_COLOR
 object "<u>targetRole:Role</u>" as Role MODEL_COLOR
 
-LogicManager --> "1" Command : executes >
-ModelManager --> "1" HitList
-HitList *--> "*" Company : contains >
-Company *--> "1" RoleList
-RoleList *--> "*" Role : contains >
+LogicManager --> Command : executes >
+ModelManager --> HitList
+HitList *--> Company : contains >
+Company *--> RoleList
+RoleList *--> Role : contains >
 
-Command : targetCompanyName = "Google"
-Command : targetRoleName = "Software Engineer"
-Company : name = "Google"
-Role : name = "Software Engineer"
+Command : companyName = "Google"
+Command : roleName = "Software Engineer"
+Company : companyName = "Google"
+Role : roleName = "Software Engineer"
 @enduml

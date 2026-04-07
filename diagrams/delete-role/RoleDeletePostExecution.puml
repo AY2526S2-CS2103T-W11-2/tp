@@ -2,16 +2,22 @@
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
 show objects
+show members
 
 object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 object "<u>:HitList</u>" as HitList MODEL_COLOR
 object "<u>targetCompany:Company</u>" as Company MODEL_COLOR
 object "<u>:RoleList</u>" as RoleList MODEL_COLOR
 
-ModelManager --> "1" HitList
-HitList *--> "*" Company : contains >
-Company *--> "1" RoleList
+ModelManager --> HitList
+HitList *--> Company : contains >
+Company *--> RoleList
 
 note right of RoleList
   The Role object representing

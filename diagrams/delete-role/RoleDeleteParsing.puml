@@ -2,7 +2,13 @@
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
 show objects
+show members
 
 object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
 object "<u>:DeleteCompanyRoleCommandParser</u>" as Parser LOGIC_COLOR
@@ -11,6 +17,6 @@ object "<u>d:DeleteCompanyRoleCommand</u>" as Command LOGIC_COLOR
 HitListParser ..> Parser : creates >
 Parser ..> Command : creates >
 
-Command : targetCompanyName = "Google"
-Command : targetRoleName = "Software Engineer"
+Command : companyName = "Google"
+Command : roleName = "Software Engineer"
 @enduml

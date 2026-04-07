@@ -1,22 +1,29 @@
 @startuml
 !include ../style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
-skinparam classBorderColor #FFFFFF
+skinparam ArrowFontStyle plain
 
-object "__c:AddCompanyRoleCommand__" as Command
-object "__m:ModelManager__" as Model
-object "__h:HitList__" as HitList
-object "__google:Company__" as Company
-object "__toAdd:Role__" as Role
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
 
-Command -right-> "1" Model : executes on >
-Command *--> "1" Role : holds >
-Model --> "1" HitList
-HitList *--> "*" Company
+show objects
+show members
 
-Company : name = "Google"
-Role : name = "Software Engineer"
+object "__c:AddCompanyRoleCommand__" as Command LOGIC_COLOR
+object "__m:ModelManager__" as Model MODEL_COLOR
+object "__h:HitList__" as HitList MODEL_COLOR
+object "__google:Company__" as Company MODEL_COLOR
+object "__toAdd:Role__" as Role MODEL_COLOR
+
+Command -right-> Model : executes on >
+Command *--> Role : holds >
+Model --> HitList
+HitList *--> Company
+
+Company : companyName = "Google"
+Company : companyDescription = "Tech Company"
+Role : roleName = "Software Engineer"
+Role : roleDescription = "Develops software solutions"
 
 @enduml

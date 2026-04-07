@@ -2,17 +2,23 @@
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
 show objects
+show members
 
 object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 object "<u>:HitList</u>" as HitList MODEL_COLOR
 object "<u>:UniqueCompanyList</u>" as UniqueCompanyList MODEL_COLOR
 object "<u>:Company</u>" as Company MODEL_COLOR
 
-ModelManager --> "1" HitList
-HitList --> "1" UniqueCompanyList
-UniqueCompanyList --> "*" Company : contains >
+ModelManager --> HitList
+HitList --> UniqueCompanyList
+UniqueCompanyList --> Company : contains >
 
-Company : name = "Google"
-Company : description = "Tech Company"
+Company : companyName = "Google"
+Company : companyDescription = "Tech Company"
 @enduml
