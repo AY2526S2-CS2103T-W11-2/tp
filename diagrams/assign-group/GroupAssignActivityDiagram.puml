@@ -1,0 +1,25 @@
+@startuml assign-group/GroupAssignActivityDiagram /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+
+start
+:User executes command;
+
+:Parse contact name and group name;
+
+if () then ([contact found])
+    if () then ([group found])
+        if () then ([contact already in group])
+            :Add contact to group;
+            :Display success message;
+        else ([contact already in group])
+            :Throw MESSAGE_PERSON_ALREADY_IN_GROUP;
+        endif
+    else ([group not found])
+        :Throw MESSAGE_GROUP_NOT_FOUND;
+    endif
+else ([contact not found])
+    :Throw MESSAGE_PERSON_NOT_FOUND;
+endif
+
+stop
+@enduml

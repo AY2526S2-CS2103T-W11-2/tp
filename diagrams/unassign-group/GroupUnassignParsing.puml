@@ -1,0 +1,24 @@
+@startuml unassign-group/GroupUnassignParsing /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:UnassignGroupCommandParser</u>" as Parser LOGIC_COLOR
+object "<u>c:UnassignGroupCommand</u>" as Command LOGIC_COLOR
+
+HitListParser ..> Parser : creates >
+Parser ..> Command : creates >
+
+note right of Command
+  Command holds the person name
+  and group name to be unassigned.
+end note
+@enduml

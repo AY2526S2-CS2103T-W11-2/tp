@@ -1,0 +1,26 @@
+@startuml assign-group/GroupAssignPostExecution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:Group</u>" as Group MODEL_COLOR
+object "<u>:Person</u>" as Person MODEL_COLOR
+
+ModelManager --> HitList
+HitList --> Group
+Group --> Person : contains as member
+
+note right of Group
+  The Group now contains the Person
+  as a member in its member list.
+end note
+@enduml

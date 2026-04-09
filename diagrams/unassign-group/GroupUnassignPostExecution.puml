@@ -1,0 +1,24 @@
+@startuml unassign-group/GroupUnassignPostExecution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:Group</u>" as Group MODEL_COLOR
+
+ModelManager --> HitList
+HitList --> Group
+
+note right of Group
+  The Group no longer contains
+  the Person as a member.
+end note
+@enduml
