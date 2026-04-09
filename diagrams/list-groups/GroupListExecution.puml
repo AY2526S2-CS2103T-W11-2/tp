@@ -1,0 +1,22 @@
+@startuml group-list-execution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:ListGroupCommand</u>" as ListGroupCommand LOGIC_COLOR
+object "<u>toList:GroupName</u>" as GroupName MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+
+LogicManager --> ListGroupCommand : executes >
+ListGroupCommand --> GroupName : contains >
+ListGroupCommand ..> ModelManager : passes toList to >
+
+@enduml

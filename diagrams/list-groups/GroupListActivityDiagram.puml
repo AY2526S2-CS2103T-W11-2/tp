@@ -1,0 +1,24 @@
+@startuml group-list-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+
+start
+:User executes command;
+
+if () then ([valid format])
+    :Parse optional target group name;
+
+    if () then ([group name provided])
+        :Create ListGroupCommand\nwith specified group name;
+    else ([no argument provided])
+        :Create ListGroupCommand\nwith default behavior;
+    endif
+
+    :Update filtered group list in Model;
+    :Display success message to User;
+
+else ([invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

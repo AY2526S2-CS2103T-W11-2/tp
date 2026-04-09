@@ -1,0 +1,25 @@
+@startuml group-list-parsing /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:ListGroupCommandParser</u>" as Parser LOGIC_COLOR
+object "<u>c:ListGroupCommand</u>" as Command LOGIC_COLOR
+object "<u>toList:GroupName</u>" as GroupName MODEL_COLOR
+
+HitListParser ..> Parser : creates >
+Parser ..> Command : creates >
+Command --> GroupName : contains >
+
+note right of GroupName
+  This will be null if no target group was specified.
+end note
+@enduml
