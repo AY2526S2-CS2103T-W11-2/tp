@@ -1,0 +1,27 @@
+@startuml company-list-parsing /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:ListCompanyCommandParser</u>" as Parser LOGIC_COLOR
+object "<u>c:ListCompanyCommand</u>" as Command LOGIC_COLOR
+object "<u>:Predicate<Company></u>" as Predicate LOGIC_COLOR
+
+HitListParser ..> Parser : creates >
+Parser ..> Command : creates >
+Command *--> Predicate : contains >
+
+note right of Predicate
+  This will be PREDICATE_SHOW_ALL_COMPANIES
+  if no target company was specified, or a specific
+  name-matching predicate if an argument was provided.
+end note
+@enduml

@@ -1,0 +1,23 @@
+@startuml company-find-execution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>f:FindCompanyCommand</u>" as Command LOGIC_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:CompanyMatchesFindPredicate</u>" as Predicate LOGIC_COLOR
+
+LogicManager --> Command : executes >
+Command *--> Predicate : holds >
+Command ..> ModelManager : passes Predicate to >
+
+Predicate : keywords = ["Google"]
+@enduml

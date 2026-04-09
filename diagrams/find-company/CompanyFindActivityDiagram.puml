@@ -1,0 +1,17 @@
+@startuml company-find-activity-diagram /' Renames the file to kebab-case when exported as an image.'/'
+!include ../style.puml
+
+start
+:User executes command;
+
+if () then ([valid format with keywords])
+    :Parse search keywords;
+    :Create search predicate \nusing keywords;
+    :Update filtered company list in Model;
+    :Display number of matching \ncompanies to User;
+else ([empty keywords / invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

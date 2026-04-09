@@ -1,0 +1,25 @@
+@startuml company-list-post-execution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:FilteredList<Company></u>" as FilteredList MODEL_COLOR
+
+ModelManager --> HitList
+ModelManager --> FilteredList
+
+note right of FilteredList
+  The FilteredList has been updated
+  with the target Predicate to display
+  the requested Company objects.
+end note
+@enduml

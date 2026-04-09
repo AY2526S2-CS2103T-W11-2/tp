@@ -1,0 +1,70 @@
+@startuml company-find-sequence-diagram-logic /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":FindCompanyCommandParser" as FindCompanyCommandParser LOGIC_COLOR
+participant "f:FindCompanyCommand" as FindCompanyCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cmpfind Google")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("cmpfind Google")
+activate HitListParser
+
+create FindCompanyCommandParser
+HitListParser -> FindCompanyCommandParser
+activate FindCompanyCommandParser
+
+FindCompanyCommandParser --> HitListParser
+deactivate FindCompanyCommandParser
+
+HitListParser -> FindCompanyCommandParser : parse(" Google")
+activate FindCompanyCommandParser
+
+create FindCompanyCommand
+FindCompanyCommandParser -> FindCompanyCommand
+activate FindCompanyCommand
+
+FindCompanyCommand --> FindCompanyCommandParser : f
+deactivate FindCompanyCommand
+
+FindCompanyCommandParser --> HitListParser : f
+deactivate FindCompanyCommandParser
+'Hidden arrow to position the destroy marker
+FindCompanyCommandParser -[hidden]-> HitListParser
+destroy FindCompanyCommandParser
+
+HitListParser --> LogicManager : f
+deactivate HitListParser
+
+LogicManager -> FindCompanyCommand : execute(m)
+activate FindCompanyCommand
+
+FindCompanyCommand -> Model : updateFilteredCompanyList(predicate)
+activate Model
+
+Model --> FindCompanyCommand
+deactivate Model
+
+create CommandResult
+FindCompanyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCompanyCommand : r
+deactivate CommandResult
+
+FindCompanyCommand --> LogicManager : r
+deactivate FindCompanyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

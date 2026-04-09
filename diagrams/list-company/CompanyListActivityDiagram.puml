@@ -1,0 +1,24 @@
+@startuml company-list-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+
+start
+:User executes command;
+
+if () then ([valid format])
+    :Parse optional target company name;
+
+    if () then ([company name provided])
+        :Create ListCompanyCommand with \nspecific company predicate;
+    else ([no argument provided])
+        :Create ListCompanyCommand with \nshow-all predicate;
+    endif
+
+    :Update filtered company list in Model;
+    :Display success message to User;
+
+else ([invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml

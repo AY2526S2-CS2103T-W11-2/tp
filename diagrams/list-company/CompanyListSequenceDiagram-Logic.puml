@@ -1,0 +1,70 @@
+@startuml company-list-sequence-diagram-logic /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":ListCompanyCommandParser" as ListCompanyCommandParser LOGIC_COLOR
+participant "l:ListCompanyCommand" as ListCompanyCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("cmplist /c Google")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("cmplist /c Google")
+activate HitListParser
+
+create ListCompanyCommandParser
+HitListParser -> ListCompanyCommandParser
+activate ListCompanyCommandParser
+
+ListCompanyCommandParser --> HitListParser
+deactivate ListCompanyCommandParser
+
+HitListParser -> ListCompanyCommandParser : parse(" /c Google")
+activate ListCompanyCommandParser
+
+create ListCompanyCommand
+ListCompanyCommandParser -> ListCompanyCommand
+activate ListCompanyCommand
+
+ListCompanyCommand --> ListCompanyCommandParser : l
+deactivate ListCompanyCommand
+
+ListCompanyCommandParser --> HitListParser : l
+deactivate ListCompanyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCompanyCommandParser -[hidden]-> HitListParser
+destroy ListCompanyCommandParser
+
+HitListParser --> LogicManager : l
+deactivate HitListParser
+
+LogicManager -> ListCompanyCommand : execute(m)
+activate ListCompanyCommand
+
+ListCompanyCommand -> Model : updateFilteredCompanyList(predicate)
+activate Model
+
+Model --> ListCompanyCommand
+deactivate Model
+
+create CommandResult
+ListCompanyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCompanyCommand : r
+deactivate CommandResult
+
+ListCompanyCommand --> LogicManager : r
+deactivate ListCompanyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
