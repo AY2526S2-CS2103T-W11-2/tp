@@ -1,15 +1,16 @@
-@startuml undo-redo-state-3 /' Renames the file to kebab-case when exported as an image.'/
-!include style.puml
+@startuml undo-redo-state-5 /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 skinparam ClassBackgroundColor #FFFFAA
 
-title After command "undo"
+title After command "clear"
 
 package States <<rectangle>> {
     class State1 as "<u>ab0:HitList</u>"
     class State2 as "<u>ab1:HitList</u>"
-    class State3 as "<u>ab2:HitList</u>"
+    class State3 as "<u>ab3:HitList</u>"
 }
 
 State1 -[hidden]right-> State2
@@ -17,5 +18,6 @@ State2 -[hidden]right-> State3
 
 class Pointer as "Current State" #FFFFFF
 
-Pointer -up-> State2
+Pointer -up-> State3
+note right on link: State ab2 deleted.
 @end

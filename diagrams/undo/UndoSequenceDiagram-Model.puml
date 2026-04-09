@@ -1,5 +1,6 @@
 @startuml undo-sequence-diagram-model /' Renames the file to kebab-case when exported as an image.'/
-!include style.puml
+!include ../style.puml
+
 skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1

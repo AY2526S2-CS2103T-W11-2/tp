@@ -1,5 +1,6 @@
 @startuml undo-redo-state-1 /' Renames the file to kebab-case when exported as an image.'/
-!include style.puml
+!include ../style.puml
+
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 skinparam ClassBackgroundColor #FFFFAA
