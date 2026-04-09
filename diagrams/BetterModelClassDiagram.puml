@@ -1,4 +1,4 @@
-@startuml
+@startuml better-model-class-diagram /' Renames the file to kebab-case when exported as an image.'/
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR

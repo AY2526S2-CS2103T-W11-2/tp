@@ -1,4 +1,4 @@
-@startuml
+@startuml ui-class-diagram /' Renames the file to kebab-case when exported as an image.'/
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
@@ -12,9 +12,15 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
-Class PersonCard
+Class PersonListCard
 Class StatusBarFooter
 Class CommandBox
+Class GroupListPanel
+Class GroupListCard
+Class CompanyListPanel
+Class CompanyListCard
+Class RoleListPanel
+Class RoleListCard
 }
 
 package Model <<Rectangle>> {
@@ -39,7 +45,7 @@ MainWindow *-down-> "1" GroupListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+PersonListPanel -down-> "*" PersonListCard
 CompanyListPanel -down-> "*" CompanyListCard
 RoleListPanel -down-> "*" RoleListCard
 GroupListPanel -down-> "*" GroupListCard
@@ -49,7 +55,7 @@ MainWindow -left-|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+PersonListCard --|> UiPart
 CompanyListPanel --|> UiPart
 CompanyListCard --|> UiPart
 RoleListPanel --|> UiPart
@@ -59,10 +65,10 @@ GroupListCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
-CompanyCard ..> Model
-RoleCard ..> Model
-GroupCard ..> Model
+PersonListCard ..> Model
+CompanyListCard ..> Model
+RoleListCard ..> Model
+GroupListCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

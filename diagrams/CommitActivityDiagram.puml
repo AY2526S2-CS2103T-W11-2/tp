@@ -1,4 +1,4 @@
-@startuml
+@startuml commit-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
 skin rose
 skinparam ActivityFontSize 15
 skinparam ArrowFontSize 12

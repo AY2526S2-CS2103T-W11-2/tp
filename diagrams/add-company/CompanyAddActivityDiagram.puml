@@ -1,4 +1,4 @@
-@startuml
+@startuml company-add-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
 skinparam ActivityFontSize 15
 skinparam ArrowFontSize 12
 start

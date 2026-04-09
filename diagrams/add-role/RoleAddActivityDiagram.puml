@@ -1,4 +1,4 @@
-@startuml
+@startuml role-add-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
 !include ../style.puml
 
 start

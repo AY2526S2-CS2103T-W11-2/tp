@@ -1,4 +1,4 @@
-@startuml
+@startuml company-add-sequence-diagram-logic /' Renames the file to kebab-case when exported as an image.'/
 !include ../style.puml
 skinparam ArrowFontStyle plain
 

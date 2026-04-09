@@ -1,4 +1,4 @@
-@startuml
+@startuml role-add-parsing /' Renames the file to kebab-case when exported as an image.'/
 !include ../style.puml
 skinparam ArrowFontStyle plain
 

@@ -1,4 +1,4 @@
-@startuml
+@startuml parser-class /' Renames the file to kebab-case when exported as an image.'/
 hide circle
 skinparam classAttributeIconSize 0
 

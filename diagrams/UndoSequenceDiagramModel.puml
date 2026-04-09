@@ -1,0 +1,23 @@
+@startuml undo-sequence-diagram-model /' Renames the file to kebab-case when exported as an image.'/
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedHitList" as VersionedHitList MODEL_COLOR
+end box
+
+[-> Model : undoHitList()
+activate Model
+
+Model -> VersionedHitList : undo()
+activate VersionedHitList
+
+VersionedHitList -> VersionedHitList :resetData(ReadOnlyHitList)
+VersionedHitList --> Model :
+deactivate VersionedHitList
+
+[<-- Model
+deactivate Model
+
+@enduml
