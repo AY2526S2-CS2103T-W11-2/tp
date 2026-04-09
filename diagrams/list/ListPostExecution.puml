@@ -1,0 +1,25 @@
+@startuml list-post-execution /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:FilteredList<Person></u>" as FilteredList MODEL_COLOR
+
+ModelManager --> HitList
+ModelManager --> FilteredList
+
+note right of FilteredList
+  The FilteredList has been updated
+  with PREDICATE_SHOW_ALL_PERSONS to display
+  all Person objects in the HitList.
+end note
+@enduml

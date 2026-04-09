@@ -1,0 +1,25 @@
+@startuml list-parsing /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>l:ListCommand</u>" as Command LOGIC_COLOR
+object "<u>:Predicate<Person></u>" as Predicate LOGIC_COLOR
+
+HitListParser ..> Command : creates directly >
+Command *--> Predicate : contains >
+
+note right of Predicate
+  This will always be PREDICATE_SHOW_ALL_PERSONS
+  since the list command does not accept
+  any arguments.
+end note
+@enduml

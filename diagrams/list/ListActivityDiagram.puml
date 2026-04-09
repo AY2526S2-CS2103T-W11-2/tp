@@ -1,0 +1,18 @@
+@startuml list-activity-diagram /' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+
+start
+:User executes command;
+
+if () then ([valid format])
+    :Create ListCommand;
+
+    :Update filtered person list in Model;
+    :Display success message to User;
+
+else ([invalid format])
+    :Throw ParseException;
+endif
+
+stop
+@enduml
