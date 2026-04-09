@@ -1,0 +1,23 @@
+@startuml person-add-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+object "c:FindCommand" as FindCommand LOGIC_COLOR
+object ":PersonMatchesFindPredicate" as PersonMatchesFindPredicate MODEL_COLOR
+
+HitListParser ..> FindCommandParser : creates >
+FindCommandParser ..> FindCommand : creates >
+FindCommand --> PersonMatchesFindPredicate : contains >
+
+PersonMatchesFindPredicate : nameKeywords = ["Alex", "Lee"]
+@enduml

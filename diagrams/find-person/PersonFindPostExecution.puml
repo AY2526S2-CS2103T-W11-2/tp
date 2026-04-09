@@ -1,0 +1,23 @@
+@startuml person-add-post-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":ModelManager" as ModelManager MODEL_COLOR
+object ":HitList" as HitList MODEL_COLOR
+object "filteredPersons:FilteredList<Person>" as FilteredPersons MODEL_COLOR
+object ":PersonMatchesFindPredicate" as Predicate MODEL_COLOR
+
+ModelManager --> HitList
+ModelManager --> FilteredPersons : contains >
+FilteredPersons ..> Predicate : uses >
+
+Predicate : nameKeywords = ["Alex", "Lee"]
+@enduml

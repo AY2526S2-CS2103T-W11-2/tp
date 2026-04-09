@@ -1,0 +1,26 @@
+@startuml person-add-post-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":ModelManager" as ModelManager MODEL_COLOR
+object ":HitList" as HitList MODEL_COLOR
+object ":UniquePersonList" as UniquePersonList MODEL_COLOR
+object ":Person" as Person MODEL_COLOR
+
+ModelManager --> HitList
+HitList --> UniquePersonList
+UniquePersonList --> Person : contains >
+
+Person : name = "John Doe"
+Person : phone = "98765432"
+Person : email = "johnd@example.com"
+Person : address = "311, Clementi Ave 2, #02-25"
+@enduml

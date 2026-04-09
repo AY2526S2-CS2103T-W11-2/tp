@@ -1,0 +1,23 @@
+@startuml person-add-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":LogicManager" as LogicManager LOGIC_COLOR
+object "c:FindCommand" as FindCommand LOGIC_COLOR
+object ":PersonMatchesFindPredicate" as PersonMatchesFindPredicate MODEL_COLOR
+object ":ModelManager" as ModelManager MODEL_COLOR
+
+LogicManager --> FindCommand : executes >
+FindCommand --> PersonMatchesFindPredicate : contains >
+FindCommand ..> ModelManager
+
+PersonMatchesFindPredicate : nameKeywords = ["Alex", "Lee"]
+@enduml

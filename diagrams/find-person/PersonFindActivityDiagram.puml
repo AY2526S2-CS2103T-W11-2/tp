@@ -1,0 +1,23 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+
+if () then ([Command is valid])
+  :Parse keywords;
+  if () then ([else])
+    :Create filter using keywords;
+    :Update filter;
+    :Display filtered person list;
+    :Display success message to User;
+  else ([Invalid keyword])
+    :Display invalid keyword error;
+  endif
+else ([Command is invalid])
+  :Display invalid command format error;
+endif
+
+stop
+@enduml

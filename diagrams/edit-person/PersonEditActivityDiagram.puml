@@ -1,0 +1,28 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+
+if () then ([Command is valid])
+  :Parse name, phone,\noptional email and address;
+  :Create new EditPersonDescriptor object;
+  if () then ([Name does not exist in HitList])
+    :Create new Person object\nwith edited fields;
+    if () then ([Edited person object is uniquely new])
+      :Set Person to edited object;
+      :Save updated HitList to Storage;
+      :Display success message to User;
+    else ([Edited person exists in HitList])
+      :Display duplicate person error;
+    endif
+  else ([Invalid index])
+    :Display invalid index error;
+  endif
+else ([Command is invalid])
+  :Display invalid command format error;
+endif
+
+stop
+@enduml

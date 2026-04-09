@@ -1,0 +1,28 @@
+@startuml person-add-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+object "c:EditCommand" as EditCommand LOGIC_COLOR
+object ":EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
+
+HitListParser ..> EditCommandParser : creates >
+EditCommandParser ..> EditCommand : creates >
+EditCommand --> EditPersonDescriptor : contains >
+
+EditCommand : index = 1
+
+EditPersonDescriptor : name = "John Doe"
+EditPersonDescriptor : phone = "98765432"
+EditPersonDescriptor : email = "johnd@example.com"
+EditPersonDescriptor : address = "311, Clementi Ave 2, #02-25"
+@enduml

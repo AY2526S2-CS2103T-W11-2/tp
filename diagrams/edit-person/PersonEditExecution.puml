@@ -1,0 +1,28 @@
+@startuml person-add-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":LogicManager" as LogicManager LOGIC_COLOR
+object "c:EditCommand" as EditCommand LOGIC_COLOR
+object "e:EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
+object ":ModelManager" as ModelManager MODEL_COLOR
+
+EditCommand : index = 1
+
+LogicManager --> EditCommand : executes >
+EditCommand --> EditPersonDescriptor : contains >
+EditCommand ..> ModelManager
+
+EditPersonDescriptor : name = "John Doe"
+EditPersonDescriptor : phone = "98765432"
+EditPersonDescriptor : email = "johnd@example.com"
+EditPersonDescriptor : address = "311, Clementi Ave 2, #02-25"
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "c:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "d:EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+
+end box
+
+[-> LogicManager : execute("edit 1 /n John Doe /p 98765432 ...")
+activate LogicManager
+
+LogicManager -> HitListParser : parseCommand("edit 1 /n John Doe /p 98765432 ...")
+activate HitListParser
+
+create EditCommandParser
+HitListParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> HitListParser
+deactivate EditCommandParser
+
+HitListParser -> EditCommandParser : parse(" 1 /n John Doe /p 98765432 ...")
+activate EditCommandParser
+
+create EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommandParser
+deactivate EditPersonDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : c
+deactivate EditCommand
+
+EditCommandParser --> HitListParser : c
+deactivate EditCommandParser
+EditCommandParser -[hidden]-> HitListParser
+destroy EditCommandParser
+
+HitListParser --> LogicManager : c
+deactivate HitListParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+EditCommand -[hidden]-> LogicManager
+destroy EditCommand
+destroy EditPersonDescriptor
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
