@@ -1,0 +1,23 @@
+@startuml person-delete-post-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":ModelManager" as ModelManager MODEL_COLOR
+object ":HitList" as HitList MODEL_COLOR
+object ":UniquePersonList" as UniquePersonList MODEL_COLOR
+
+ModelManager --> HitList
+HitList --> UniquePersonList
+
+note right of UniquePersonList
+The matching Person object has been removed
+end note
+@enduml

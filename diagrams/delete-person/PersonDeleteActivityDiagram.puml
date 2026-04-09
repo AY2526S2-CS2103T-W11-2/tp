@@ -1,0 +1,27 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+
+if () then ([Command is valid])
+  if () then ([Target provided as index])
+    :Parse displayed person index;
+  else ([Target provided as name])
+    :Parse person name;
+  endif
+
+  if () then ([Person exists in HitList])
+    :Delete Person from Model;
+    :Save updated HitList to Storage;
+    :Display success message to User;
+  else ([Person does not exist])
+    :Display person not found error;
+  endif
+else ([Command is invalid])
+  :Display invalid command format error;
+endif
+
+stop
+@enduml

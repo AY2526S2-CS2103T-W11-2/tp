@@ -1,0 +1,22 @@
+@startuml
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User executes command;
+
+if () then ([Command is valid])
+  :Parse group name;
+  if () then ([Group exists in HitList])
+    :Delete Group from Model;
+    :Save updated HitList to Storage;
+    :Display success message to User;
+  else ([Group does not exist])
+    :Display group not found error;
+  endif
+else ([Command is invalid])
+  :Display invalid command format error;
+endif
+
+stop
+@enduml

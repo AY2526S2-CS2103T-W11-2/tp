@@ -1,0 +1,57 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":DeleteGroupCommandParser" as DeleteGroupCommandParser LOGIC_COLOR
+participant "c:DeleteGroupCommand" as DeleteGroupCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grpdel /g Students")
+activate LogicManager
+LogicManager -> HitListParser : parseCommand("grpdel /g Students")
+activate HitListParser
+
+create DeleteGroupCommandParser
+HitListParser -> DeleteGroupCommandParser
+activate DeleteGroupCommandParser
+DeleteGroupCommandParser --> HitListParser
+deactivate DeleteGroupCommandParser
+
+HitListParser -> DeleteGroupCommandParser : parse(" /g Students")
+activate DeleteGroupCommandParser
+
+create DeleteGroupCommand
+DeleteGroupCommandParser -> DeleteGroupCommand
+activate DeleteGroupCommand
+DeleteGroupCommand --> DeleteGroupCommandParser : c
+deactivate DeleteGroupCommand
+
+DeleteGroupCommandParser --> HitListParser : c
+deactivate DeleteGroupCommandParser
+DeleteGroupCommandParser -[hidden]-> HitListParser
+destroy DeleteGroupCommandParser
+
+HitListParser --> LogicManager : c
+deactivate HitListParser
+
+LogicManager -> DeleteGroupCommand : execute()
+activate DeleteGroupCommand
+DeleteGroupCommand -> Model : deleteGroup(toDelete)
+activate Model
+Model --> DeleteGroupCommand
+deactivate Model
+DeleteGroupCommand --> LogicManager : result
+deactivate DeleteGroupCommand
+DeleteGroupCommand -[hidden]-> LogicManager
+destroy DeleteGroupCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

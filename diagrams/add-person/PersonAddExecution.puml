@@ -1,0 +1,26 @@
+@startuml person-add-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":LogicManager" as LogicManager LOGIC_COLOR
+object "c:AddCommand" as AddCommand LOGIC_COLOR
+object "toAdd:Person" as Person MODEL_COLOR
+object ":ModelManager" as ModelManager MODEL_COLOR
+
+LogicManager --> AddCommand : executes >
+AddCommand --> Person : contains >
+AddCommand ..> ModelManager : passes toAdd to >
+
+Person : name = "John Doe"
+Person : phone = "98765432"
+Person : email = "johnd@example.com"
+Person : address = "311, Clementi Ave 2, #02-25"
+@enduml

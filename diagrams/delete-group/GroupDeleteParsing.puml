@@ -1,0 +1,23 @@
+@startuml group-delete-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":DeleteGroupCommandParser" as DeleteGroupCommandParser LOGIC_COLOR
+object "c:DeleteGroupCommand" as DeleteGroupCommand LOGIC_COLOR
+object "toDelete:Group" as Group MODEL_COLOR
+
+HitListParser ..> DeleteGroupCommandParser : creates >
+DeleteGroupCommandParser ..> DeleteGroupCommand : creates >
+DeleteGroupCommand --> Group : contains >
+
+Group : groupName = "Students"
+@enduml

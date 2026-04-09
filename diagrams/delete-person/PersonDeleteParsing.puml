@@ -1,0 +1,23 @@
+@startuml person-delete-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+object "c:DeleteCommand" as DeleteCommand LOGIC_COLOR
+object "targetName:Name" as Name MODEL_COLOR
+
+HitListParser ..> DeleteCommandParser : creates >
+DeleteCommandParser ..> DeleteCommand : creates >
+DeleteCommand --> Name : contains >
+
+Name : fullName = "John Doe"
+@enduml

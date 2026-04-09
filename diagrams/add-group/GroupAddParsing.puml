@@ -1,0 +1,26 @@
+@startuml group-add-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":AddGroupCommandParser" as AddGroupCommandParser LOGIC_COLOR
+object "c:AddGroupCommand" as AddGroupCommand LOGIC_COLOR
+object "toAdd:Group" as Group MODEL_COLOR
+object "memberNames:Set<Name>" as MemberNames MODEL_COLOR
+
+HitListParser ..> AddGroupCommandParser : creates >
+AddGroupCommandParser ..> AddGroupCommand : creates >
+AddGroupCommand --> Group : contains >
+AddGroupCommand --> MemberNames : contains >
+
+Group : groupName = "Students"
+MemberNames : {"Alex Yeoh", "Bernice Yu"}
+@enduml

@@ -1,0 +1,26 @@
+@startuml person-add-parsing
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":HitListParser" as HitListParser LOGIC_COLOR
+object ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+object "c:AddCommand" as AddCommand LOGIC_COLOR
+object "toAdd:Person" as Person MODEL_COLOR
+
+HitListParser ..> AddCommandParser : creates >
+AddCommandParser ..> AddCommand : creates >
+AddCommand --> Person : contains >
+
+Person : name = "John Doe"
+Person : phone = "98765432"
+Person : email = "johnd@example.com"
+Person : address = "311, Clementi Ave 2, #02-25"
+@enduml

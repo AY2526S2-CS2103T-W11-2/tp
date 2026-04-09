@@ -1,0 +1,57 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "c:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete /n John Doe")
+activate LogicManager
+LogicManager -> HitListParser : parseCommand("delete /n John Doe")
+activate HitListParser
+
+create DeleteCommandParser
+HitListParser -> DeleteCommandParser
+activate DeleteCommandParser
+DeleteCommandParser --> HitListParser
+deactivate DeleteCommandParser
+
+HitListParser -> DeleteCommandParser : parse(" /n John Doe")
+activate DeleteCommandParser
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+DeleteCommand --> DeleteCommandParser : c
+deactivate DeleteCommand
+
+DeleteCommandParser --> HitListParser : c
+deactivate DeleteCommandParser
+DeleteCommandParser -[hidden]-> HitListParser
+destroy DeleteCommandParser
+
+HitListParser --> LogicManager : c
+deactivate HitListParser
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+DeleteCommand -> Model : deletePerson(target)
+activate Model
+Model --> DeleteCommand
+deactivate Model
+DeleteCommand --> LogicManager : result
+deactivate DeleteCommand
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

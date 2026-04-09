@@ -1,0 +1,23 @@
+@startuml group-delete-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":LogicManager" as LogicManager LOGIC_COLOR
+object "c:DeleteGroupCommand" as DeleteGroupCommand LOGIC_COLOR
+object "toDelete:Group" as Group MODEL_COLOR
+object ":ModelManager" as ModelManager MODEL_COLOR
+
+LogicManager --> DeleteGroupCommand : executes >
+DeleteGroupCommand --> Group : contains >
+DeleteGroupCommand ..> ModelManager : passes target to >
+
+Group : groupName = "Students"
+@enduml

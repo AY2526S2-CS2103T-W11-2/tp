@@ -1,0 +1,65 @@
+@startuml
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HitListParser" as HitListParser LOGIC_COLOR
+participant ":AddGroupCommandParser" as AddGroupCommandParser LOGIC_COLOR
+participant "c:AddGroupCommand" as AddGroupCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grpadd /g Students /n Alex Yeoh /n Bernice Yu")
+activate LogicManager
+LogicManager -> HitListParser : parseCommand("grpadd /g Students /n Alex Yeoh /n Bernice Yu")
+activate HitListParser
+
+create AddGroupCommandParser
+HitListParser -> AddGroupCommandParser
+activate AddGroupCommandParser
+AddGroupCommandParser --> HitListParser
+deactivate AddGroupCommandParser
+
+HitListParser -> AddGroupCommandParser : parse(" /g Students /n Alex Yeoh /n Bernice Yu")
+activate AddGroupCommandParser
+
+create AddGroupCommand
+AddGroupCommandParser -> AddGroupCommand
+activate AddGroupCommand
+AddGroupCommand --> AddGroupCommandParser : c
+deactivate AddGroupCommand
+
+AddGroupCommandParser --> HitListParser : c
+deactivate AddGroupCommandParser
+AddGroupCommandParser -[hidden]-> HitListParser
+destroy AddGroupCommandParser
+
+HitListParser --> LogicManager : c
+deactivate HitListParser
+
+LogicManager -> AddGroupCommand : execute()
+activate AddGroupCommand
+AddGroupCommand -> Model : addGroup(toAdd)
+activate Model
+Model --> AddGroupCommand
+deactivate Model
+
+loop for each member name
+  AddGroupCommand -> Model : getHitList()
+  activate Model
+  Model --> AddGroupCommand : person list
+  deactivate Model
+end
+
+AddGroupCommand --> LogicManager : result
+deactivate AddGroupCommand
+AddGroupCommand -[hidden]-> LogicManager
+destroy AddGroupCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,23 @@
+@startuml group-delete-post-execution
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+skinparam shadowing false
+skinparam ObjectFontColor #FFFFFF
+skinparam ObjectAttributeFontColor #FFFFFF
+skinparam ObjectBorderColor #FFFFFF
+
+show objects
+show members
+
+object ":ModelManager" as ModelManager MODEL_COLOR
+object ":HitList" as HitList MODEL_COLOR
+object ":UniqueGroupList" as UniqueGroupList MODEL_COLOR
+
+ModelManager --> HitList
+HitList --> UniqueGroupList
+
+note right of UniqueGroupList
+The matching Group object has been removed
+end note
+@enduml
