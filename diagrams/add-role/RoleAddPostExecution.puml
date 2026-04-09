@@ -10,11 +10,11 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object "__m:ModelManager__" as Model MODEL_COLOR
-object "__h:HitList__" as HitList MODEL_COLOR
-object "__google:Company__" as Company MODEL_COLOR
-object "__r:RoleList__" as RoleList MODEL_COLOR
-object "__newRole:Role__" as Role MODEL_COLOR
+object "<u>m:ModelManager</u>" as Model MODEL_COLOR
+object "<u>h:HitList</u>" as HitList MODEL_COLOR
+object "<u>google:Company</u>" as Company MODEL_COLOR
+object "<u>r:RoleList</u>" as RoleList MODEL_COLOR
+object "<u>newRole:Role</u>" as Role MODEL_COLOR
 
 Model -right-> HitList
 HitList *--> Company

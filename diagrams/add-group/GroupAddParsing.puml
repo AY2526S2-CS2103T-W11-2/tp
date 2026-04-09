@@ -10,11 +10,11 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":HitListParser" as HitListParser LOGIC_COLOR
-object ":AddGroupCommandParser" as AddGroupCommandParser LOGIC_COLOR
-object "c:AddGroupCommand" as AddGroupCommand LOGIC_COLOR
-object "toAdd:Group" as Group MODEL_COLOR
-object "memberNames:Set<Name>" as MemberNames MODEL_COLOR
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:AddGroupCommandParser</u>" as AddGroupCommandParser LOGIC_COLOR
+object "<u>c:AddGroupCommand</u>" as AddGroupCommand LOGIC_COLOR
+object "<u>toAdd:Group</u>" as Group MODEL_COLOR
+object "<u>memberNames:Set<Name></u>" as MemberNames MODEL_COLOR
 
 HitListParser ..> AddGroupCommandParser : creates >
 AddGroupCommandParser ..> AddGroupCommand : creates >

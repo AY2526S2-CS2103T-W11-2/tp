@@ -10,11 +10,11 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":LogicManager" as LogicManager LOGIC_COLOR
-object "c:UnassignGroupCommand" as UnassignGroupCommand LOGIC_COLOR
-object "targetPerson:Person" as Person MODEL_COLOR
-object "targetGroup:Group" as Group MODEL_COLOR
-object ":ModelManager" as ModelManager MODEL_COLOR
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:UnassignGroupCommand</u>" as UnassignGroupCommand LOGIC_COLOR
+object "<u>targetPerson:Person</u>" as Person MODEL_COLOR
+object "<u>targetGroup:Group</u>" as Group MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 LogicManager --> UnassignGroupCommand : executes >
 UnassignGroupCommand --> Person : contains >

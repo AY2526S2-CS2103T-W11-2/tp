@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":ModelManager" as ModelManager MODEL_COLOR
-object ":HitList" as HitList MODEL_COLOR
-object ":UniqueGroupList" as UniqueGroupList MODEL_COLOR
-object ":Group" as Group MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>:UniqueGroupList</u>" as UniqueGroupList MODEL_COLOR
+object "<u>:Group</u>" as Group MODEL_COLOR
 
 ModelManager --> HitList
 HitList --> UniqueGroupList

@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":HitListParser" as HitListParser LOGIC_COLOR
-object ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-object "c:FindCommand" as FindCommand LOGIC_COLOR
-object ":PersonMatchesFindPredicate" as PersonMatchesFindPredicate MODEL_COLOR
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:FindCommandParser</u>" as FindCommandParser LOGIC_COLOR
+object "<u>c:FindCommand</u>" as FindCommand LOGIC_COLOR
+object "<u>:PersonMatchesFindPredicate</u>" as PersonMatchesFindPredicate MODEL_COLOR
 
 HitListParser ..> FindCommandParser : creates >
 FindCommandParser ..> FindCommand : creates >

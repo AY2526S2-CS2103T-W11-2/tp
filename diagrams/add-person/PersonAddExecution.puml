@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":LogicManager" as LogicManager LOGIC_COLOR
-object "c:AddCommand" as AddCommand LOGIC_COLOR
-object "toAdd:Person" as Person MODEL_COLOR
-object ":ModelManager" as ModelManager MODEL_COLOR
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:AddCommand</u>" as AddCommand LOGIC_COLOR
+object "<u>toAdd:Person</u>" as Person MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 LogicManager --> AddCommand : executes >
 AddCommand --> Person : contains >

@@ -10,11 +10,11 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object "__c:AddCompanyRoleCommand__" as Command LOGIC_COLOR
-object "__m:ModelManager__" as Model MODEL_COLOR
-object "__h:HitList__" as HitList MODEL_COLOR
-object "__google:Company__" as Company MODEL_COLOR
-object "__toAdd:Role__" as Role MODEL_COLOR
+object "<u>c:AddCompanyRoleCommand</u>" as Command LOGIC_COLOR
+object "<u>m:ModelManager</u>" as Model MODEL_COLOR
+object "<u>h:HitList</u>" as HitList MODEL_COLOR
+object "<u>google:Company</u>" as Company MODEL_COLOR
+object "<u>toAdd:Role</u>" as Role MODEL_COLOR
 
 Command -right-> Model : executes on >
 Command *--> Role : holds >

@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":LogicManager" as LogicManager LOGIC_COLOR
-object "c:DeleteCommand" as DeleteCommand LOGIC_COLOR
-object "targetName:Name" as Name MODEL_COLOR
-object ":ModelManager" as ModelManager MODEL_COLOR
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:DeleteCommand</u>" as DeleteCommand LOGIC_COLOR
+object "<u>targetName:Name</u>" as Name MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 LogicManager --> DeleteCommand : executes >
 DeleteCommand --> Name : contains >

@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":ModelManager" as ModelManager MODEL_COLOR
-object ":HitList" as HitList MODEL_COLOR
-object "filteredPersons:FilteredList<Person>" as FilteredPersons MODEL_COLOR
-object ":PersonMatchesFindPredicate" as Predicate MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
+object "<u>:HitList</u>" as HitList MODEL_COLOR
+object "<u>filteredPersons:FilteredList<Person></u>" as FilteredPersons MODEL_COLOR
+object "<u>:PersonMatchesFindPredicate</u>" as Predicate MODEL_COLOR
 
 ModelManager --> HitList
 ModelManager --> FilteredPersons : contains >

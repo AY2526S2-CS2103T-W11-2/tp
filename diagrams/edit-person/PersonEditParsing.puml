@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":HitListParser" as HitListParser LOGIC_COLOR
-object ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-object "c:EditCommand" as EditCommand LOGIC_COLOR
-object ":EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:EditCommandParser</u>" as EditCommandParser LOGIC_COLOR
+object "<u>c:EditCommand</u>" as EditCommand LOGIC_COLOR
+object "<u>:EditPersonDescriptor</u>" as EditPersonDescriptor MODEL_COLOR
 
 HitListParser ..> EditCommandParser : creates >
 EditCommandParser ..> EditCommand : creates >

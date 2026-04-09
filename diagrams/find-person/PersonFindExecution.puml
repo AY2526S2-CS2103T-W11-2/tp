@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":LogicManager" as LogicManager LOGIC_COLOR
-object "c:FindCommand" as FindCommand LOGIC_COLOR
-object ":PersonMatchesFindPredicate" as PersonMatchesFindPredicate MODEL_COLOR
-object ":ModelManager" as ModelManager MODEL_COLOR
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:FindCommand</u>" as FindCommand LOGIC_COLOR
+object "<u>:PersonMatchesFindPredicate</u>" as PersonMatchesFindPredicate MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 LogicManager --> FindCommand : executes >
 FindCommand --> PersonMatchesFindPredicate : contains >

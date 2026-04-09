@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object "__:AddCompanyRoleCommandParser__" as Parser LOGIC_COLOR
-object "__:AddCompanyRoleCommand__" as Command LOGIC_COLOR
-object "__targetCompany:Name__" as TargetName MODEL_COLOR
-object "__toAdd:Role__" as Role MODEL_COLOR
+object "<u>:AddCompanyRoleCommandParser</u>" as Parser LOGIC_COLOR
+object "<u>:AddCompanyRoleCommand</u>" as Command LOGIC_COLOR
+object "<u>targetCompany:Name</u>" as TargetName MODEL_COLOR
+object "<u>toAdd:Role</u>" as Role MODEL_COLOR
 
 Parser ..> Command : creates >
 Command *--> TargetName : holds >

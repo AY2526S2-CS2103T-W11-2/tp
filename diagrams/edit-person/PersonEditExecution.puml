@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":LogicManager" as LogicManager LOGIC_COLOR
-object "c:EditCommand" as EditCommand LOGIC_COLOR
-object "e:EditPersonDescriptor" as EditPersonDescriptor MODEL_COLOR
-object ":ModelManager" as ModelManager MODEL_COLOR
+object "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+object "<u>c:EditCommand</u>" as EditCommand LOGIC_COLOR
+object "<u>e:EditPersonDescriptor</u>" as EditPersonDescriptor MODEL_COLOR
+object "<u>:ModelManager</u>" as ModelManager MODEL_COLOR
 
 EditCommand : index = 1
 

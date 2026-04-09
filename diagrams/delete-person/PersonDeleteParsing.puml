@@ -10,10 +10,10 @@ skinparam ObjectBorderColor #FFFFFF
 show objects
 show members
 
-object ":HitListParser" as HitListParser LOGIC_COLOR
-object ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-object "c:DeleteCommand" as DeleteCommand LOGIC_COLOR
-object "targetName:Name" as Name MODEL_COLOR
+object "<u>:HitListParser</u>" as HitListParser LOGIC_COLOR
+object "<u>:DeleteCommandParser</u>" as DeleteCommandParser LOGIC_COLOR
+object "<u>c:DeleteCommand</u>" as DeleteCommand LOGIC_COLOR
+object "<u>targetName:Name</u>" as Name MODEL_COLOR
 
 HitListParser ..> DeleteCommandParser : creates >
 DeleteCommandParser ..> DeleteCommand : creates >
