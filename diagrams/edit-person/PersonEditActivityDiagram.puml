@@ -6,12 +6,12 @@ start
 :User executes command;
 
 if () then ([Command is valid])
-  :Parse name, phone,\noptional email and address;
+  :Parse index, name, phone,\noptional email and address;
   :Create new EditPersonDescriptor object;
-  if () then ([Name does not exist in HitList])
+  if () then ([Index within bounds of filtered list])
     :Create new Person object\nwith edited fields;
     if () then ([Edited person object is uniquely new])
-      :Set Person to edited object;
+      :Set Person at index to edited object;
       :Save updated HitList to Storage;
       :Display success message to User;
     else ([Edited person exists in HitList])
