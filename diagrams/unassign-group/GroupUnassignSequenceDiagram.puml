@@ -11,6 +11,7 @@ participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "targetGroup:Group" as Group MODEL_COLOR
 participant "m:Model" as Model MODEL_COLOR
 end box
 
@@ -39,8 +40,6 @@ deactivate UnassignGroupCommand
 
 UnassignGroupCommandParser --> HitListParser : c
 deactivate UnassignGroupCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-UnassignGroupCommandParser -[hidden]-> HitListParser
 destroy UnassignGroupCommandParser
 
 HitListParser --> LogicManager : c
@@ -59,10 +58,15 @@ activate Model
 Model --> UnassignGroupCommand : targetGroup
 deactivate Model
 
-UnassignGroupCommand -> Model : targetGroup.removeMember(contact)
-activate Model
-Model --> UnassignGroupCommand
-deactivate Model
+UnassignGroupCommand -> Group : hasMember(personToUnassign)
+activate Group
+Group --> UnassignGroupCommand : true/false
+deactivate Group
+
+UnassignGroupCommand -> Group : removeMember(personToUnassign)
+activate Group
+Group --> UnassignGroupCommand
+deactivate Group
 
 UnassignGroupCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
