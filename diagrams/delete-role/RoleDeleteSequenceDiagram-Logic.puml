@@ -1,4 +1,4 @@
-@startuml role-delete-sequence-diagram-logic /' Renames the file to kebab-case when exported as an image.'/'
+@startuml role-delete-sequence-diagram-logic
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("roledel /c Google /r Software Engineer")
+[-> LogicManager : execute("roledel /c Google /r SE")
 activate LogicManager
 
-LogicManager -> HitListParser : parseCommand("roledel /c Google /r Software Engineer")
+LogicManager -> HitListParser : parseCommand(...)
 activate HitListParser
 
 create DeleteCompanyRoleCommandParser
@@ -27,7 +27,7 @@ activate DeleteCompanyRoleCommandParser
 DeleteCompanyRoleCommandParser --> HitListParser
 deactivate DeleteCompanyRoleCommandParser
 
-HitListParser -> DeleteCompanyRoleCommandParser : parse(" /c Google /r Software Engineer")
+HitListParser -> DeleteCompanyRoleCommandParser : parse(" /c Google /r SE")
 activate DeleteCompanyRoleCommandParser
 
 create DeleteCompanyRoleCommand
@@ -39,8 +39,6 @@ deactivate DeleteCompanyRoleCommand
 
 DeleteCompanyRoleCommandParser --> HitListParser : d
 deactivate DeleteCompanyRoleCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCompanyRoleCommandParser -[hidden]-> HitListParser
 destroy DeleteCompanyRoleCommandParser
 
 HitListParser --> LogicManager : d
@@ -49,11 +47,20 @@ deactivate HitListParser
 LogicManager -> DeleteCompanyRoleCommand : execute(m)
 activate DeleteCompanyRoleCommand
 
-DeleteCompanyRoleCommand -> Model : deleteCompanyRole(targetCompany, targetRole)
+DeleteCompanyRoleCommand -> Model : getCompany(companyName)
 activate Model
-
-Model --> DeleteCompanyRoleCommand
+Model --> DeleteCompanyRoleCommand : company (optional)
 deactivate Model
+
+DeleteCompanyRoleCommand -> DeleteCompanyRoleCommand : findRoleToDelete()
+activate DeleteCompanyRoleCommand
+DeleteCompanyRoleCommand --> DeleteCompanyRoleCommand : roleToDelete
+deactivate DeleteCompanyRoleCommand
+
+DeleteCompanyRoleCommand -> DeleteCompanyRoleCommand : company.getUniqueRoleList().remove(roleToDelete)
+
+DeleteCompanyRoleCommand -> Model : updateRoleList(companyName)
+activate Model
 
 create CommandResult
 DeleteCompanyRoleCommand -> CommandResult
