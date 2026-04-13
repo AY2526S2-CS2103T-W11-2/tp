@@ -1,28 +1,35 @@
 @startuml
+
 skinparam ActivityFontSize 15
 skinparam ArrowFontSize 12
 
 start
+
 :User executes command;
 
 if () then ([Command is valid])
   :Parse group name and optional member names;
   :Create new Group object;
+
   if () then ([Group does not exist in HitList])
-    :Add Group to Model;
+
     if () then ([All provided members exist])
       :Add resolved members to Group;
+      :Add Group to Model;
       :Save updated HitList to Storage;
       :Display success message to User;
     else ([A member cannot be found])
       :Display contact not found error;
     endif
+
   else ([Group already exists])
     :Display duplicate group error;
   endif
+
 else ([Command is invalid])
   :Display invalid command format error;
 endif
 
 stop
+
 @enduml

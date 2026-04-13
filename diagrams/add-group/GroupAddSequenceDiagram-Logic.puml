@@ -1,5 +1,6 @@
 @startuml
 !include ../style.puml
+
 skinparam ArrowFontStyle plain
 
 box Logic LOGIC_COLOR_T1
@@ -15,12 +16,14 @@ end box
 
 [-> LogicManager : execute("grpadd /g Students /n Alex Yeoh /n Bernice Yu")
 activate LogicManager
+
 LogicManager -> HitListParser : parseCommand("grpadd /g Students /n Alex Yeoh /n Bernice Yu")
 activate HitListParser
 
 create AddGroupCommandParser
 HitListParser -> AddGroupCommandParser
 activate AddGroupCommandParser
+
 AddGroupCommandParser --> HitListParser
 deactivate AddGroupCommandParser
 
@@ -30,11 +33,13 @@ activate AddGroupCommandParser
 create AddGroupCommand
 AddGroupCommandParser -> AddGroupCommand
 activate AddGroupCommand
+
 AddGroupCommand --> AddGroupCommandParser : c
 deactivate AddGroupCommand
 
 AddGroupCommandParser --> HitListParser : c
 deactivate AddGroupCommandParser
+
 AddGroupCommandParser -[hidden]-> HitListParser
 destroy AddGroupCommandParser
 
@@ -43,10 +48,6 @@ deactivate HitListParser
 
 LogicManager -> AddGroupCommand : execute()
 activate AddGroupCommand
-AddGroupCommand -> Model : addGroup(toAdd)
-activate Model
-Model --> AddGroupCommand
-deactivate Model
 
 loop for each member name
   AddGroupCommand -> Model : getHitList()
@@ -55,11 +56,18 @@ loop for each member name
   deactivate Model
 end
 
+AddGroupCommand -> Model : addGroup(toAdd)
+activate Model
+Model --> AddGroupCommand
+deactivate Model
+
 AddGroupCommand --> LogicManager : result
 deactivate AddGroupCommand
+
 AddGroupCommand -[hidden]-> LogicManager
 destroy AddGroupCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
