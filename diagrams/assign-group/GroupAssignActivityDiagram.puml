@@ -8,7 +8,7 @@ start
 
 if () then ([contact found])
     if () then ([group found])
-        if () then ([contact already in group])
+        if () then ([contact not in group])
             :Add contact to group;
             :Display success message;
         else ([contact already in group])
