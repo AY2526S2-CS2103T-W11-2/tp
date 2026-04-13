@@ -11,7 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":PersonMatchesFindPredicate" as Predicate MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
+participant "m:Model" as Model MODEL_COLOR
 
 end box
 
@@ -53,7 +53,7 @@ destroy FindCommandParser
 HitListParser --> LogicManager : c
 deactivate HitListParser
 
-LogicManager -> FindCommand : execute()
+LogicManager -> FindCommand : execute(m)
 activate FindCommand
 
 FindCommand -> Model : updateFilteredPersonList(p)

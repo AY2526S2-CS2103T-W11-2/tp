@@ -10,7 +10,7 @@ participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant "m:Model" as Model MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -28,7 +28,7 @@ deactivate UndoCommand
 HitListParser --> LogicManager : u
 deactivate HitListParser
 
-LogicManager -> UndoCommand : execute()
+LogicManager -> UndoCommand : execute(m)
 activate UndoCommand
 
 UndoCommand -> Model : undoHitList()
