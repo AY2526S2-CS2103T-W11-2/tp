@@ -8,11 +8,11 @@ start
 if () then ([Command is valid])
   :Parse name, phone,\noptional email and address;
   :Create new Person object;
-  if () then ([Name / phone number do not exist in HitList])
+  if () then ([Name does not exist in HitList])
     :Add Person to Model;
     :Save updated HitList to Storage;
     :Display success message to User;
-  else ([Duplicate name / phone number])
+  else ([Duplicate name])
     :Display duplicate contact error;
   endif
 else ([Command is invalid])
