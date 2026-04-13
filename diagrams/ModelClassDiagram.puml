@@ -19,6 +19,15 @@ Class Email
 Class Name
 Class Phone
 
+Class UniqueGroupList
+Class Group
+Class GroupName
+
+Class UniqueCompanyList
+Class Company
+Class CompanyName
+Class CompanyDescription
+
 Class I #FFFFFF
 }
 
@@ -41,8 +50,14 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+HitList *--> "1" UniqueGroupList
+UniqueGroupList --> "~* all" Group
+Group *--> GroupName
+
+HitList *--> "1" UniqueCompanyList
+UniqueCompanyList --> "~* all" Company
+Company *--> CompanyName
+Company *--> CompanyDescription
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

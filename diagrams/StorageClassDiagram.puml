@@ -19,6 +19,9 @@ Class "<<interface>>\nHitListStorage" as HitListStorage
 Class JsonHitListStorage
 Class JsonSerializableHitList
 Class JsonAdaptedPerson
+Class JsonAdaptedGroup
+Class JsonAdaptedCompany
+Class JsonAdaptedRole
 }
 
 }
@@ -37,5 +40,9 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonHitListStorage .up.|> HitListStorage
 JsonHitListStorage ..> JsonSerializableHitList
 JsonSerializableHitList --> "*" JsonAdaptedPerson
+JsonSerializableHitList --> "*" JsonAdaptedGroup
+JsonSerializableHitList --> "*" JsonAdaptedCompany
+JsonSerializableHitList --> "*" JsonAdaptedRole
+
 
 @enduml
