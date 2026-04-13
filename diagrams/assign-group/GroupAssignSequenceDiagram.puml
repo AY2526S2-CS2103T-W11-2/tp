@@ -1,4 +1,5 @@
-@startuml assign-group/GroupAssignSequenceDiagram/' Renames the file to kebab-case when exported as an image.'/
+@startuml assign-group/GroupAssignSequenceDiagram
+/' Renames the file to kebab-case when exported as an image.'/
 !include ../style.puml
 skinparam ArrowFontStyle plain
 
@@ -12,6 +13,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
+participant "targetGroup:Group" as TargetGroup MODEL_COLOR
 end box
 
 [-> LogicManager : execute("grpassign /n Alex /g Students")
@@ -23,7 +25,6 @@ activate HitListParser
 create AssignGroupCommandParser
 HitListParser -> AssignGroupCommandParser
 activate AssignGroupCommandParser
-
 AssignGroupCommandParser --> HitListParser
 deactivate AssignGroupCommandParser
 
@@ -33,12 +34,12 @@ activate AssignGroupCommandParser
 create AssignGroupCommand
 AssignGroupCommandParser -> AssignGroupCommand
 activate AssignGroupCommand
-
 AssignGroupCommand --> AssignGroupCommandParser : c
 deactivate AssignGroupCommand
 
 AssignGroupCommandParser --> HitListParser : c
 deactivate AssignGroupCommandParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AssignGroupCommandParser -[hidden]-> HitListParser
 destroy AssignGroupCommandParser
@@ -59,10 +60,10 @@ activate Model
 Model --> AssignGroupCommand : targetGroup
 deactivate Model
 
-AssignGroupCommand -> Model : targetGroup.addMember(contact)
-activate Model
-Model --> AssignGroupCommand
-deactivate Model
+AssignGroupCommand -> TargetGroup : addMember(personToAssign)
+activate TargetGroup
+TargetGroup --> AssignGroupCommand
+deactivate TargetGroup
 
 AssignGroupCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
@@ -72,7 +73,6 @@ deactivate Model
 create CommandResult
 AssignGroupCommand -> CommandResult
 activate CommandResult
-
 CommandResult --> AssignGroupCommand : r
 deactivate CommandResult
 
