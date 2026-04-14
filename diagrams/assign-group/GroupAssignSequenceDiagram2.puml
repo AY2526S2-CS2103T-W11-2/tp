@@ -1,0 +1,48 @@
+@startuml assign-group/GroupAssignSequenceDiagram2
+/' Renames the file to kebab-case when exported as an image.'/
+!include ../style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "c:AssignGroupCommand" as AssignGroupCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "targetGroup:Group" as TargetGroup MODEL_COLOR
+end box
+
+LogicManager -> AssignGroupCommand : execute(m)
+activate AssignGroupCommand
+
+AssignGroupCommand -> Model : getPersonsByName(personName)
+activate Model
+Model --> AssignGroupCommand : matchedPersons
+deactivate Model
+
+AssignGroupCommand -> Model : getGroup(groupName)
+activate Model
+Model --> AssignGroupCommand : targetGroup
+deactivate Model
+
+AssignGroupCommand -> TargetGroup : addMember(personToAssign)
+activate TargetGroup
+TargetGroup --> AssignGroupCommand
+deactivate TargetGroup
+
+AssignGroupCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+Model --> AssignGroupCommand
+deactivate Model
+
+create CommandResult
+AssignGroupCommand -> CommandResult
+activate CommandResult
+CommandResult --> AssignGroupCommand : r
+deactivate CommandResult
+
+LogicManager <-- AssignGroupCommand : r
+deactivate AssignGroupCommand
+@enduml

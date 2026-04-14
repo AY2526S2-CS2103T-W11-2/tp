@@ -8,12 +8,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":HitListParser" as HitListParser LOGIC_COLOR
 participant ":AssignGroupCommandParser" as AssignGroupCommandParser LOGIC_COLOR
 participant "c:AssignGroupCommand" as AssignGroupCommand LOGIC_COLOR
-participant "r:CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Model MODEL_COLOR_T1
-participant "m:Model" as Model MODEL_COLOR
-participant "targetGroup:Group" as TargetGroup MODEL_COLOR
 end box
 
 [-> LogicManager : execute("grpassign /n Alex /g Students")
@@ -40,45 +34,9 @@ deactivate AssignGroupCommand
 AssignGroupCommandParser --> HitListParser : c
 deactivate AssignGroupCommandParser
 
-'Hidden arrow to position the destroy marker below the end of the activation bar.
 AssignGroupCommandParser -[hidden]-> HitListParser
 destroy AssignGroupCommandParser
 
 HitListParser --> LogicManager : c
 deactivate HitListParser
-
-LogicManager -> AssignGroupCommand : execute(m)
-activate AssignGroupCommand
-
-AssignGroupCommand -> Model : getPersonsByName(personName)
-activate Model
-Model --> AssignGroupCommand : matchedPersons
-deactivate Model
-
-AssignGroupCommand -> Model : getGroup(groupName)
-activate Model
-Model --> AssignGroupCommand : targetGroup
-deactivate Model
-
-AssignGroupCommand -> TargetGroup : addMember(personToAssign)
-activate TargetGroup
-TargetGroup --> AssignGroupCommand
-deactivate TargetGroup
-
-AssignGroupCommand -> Model : updateFilteredPersonList(predicate)
-activate Model
-Model --> AssignGroupCommand
-deactivate Model
-
-create CommandResult
-AssignGroupCommand -> CommandResult
-activate CommandResult
-CommandResult --> AssignGroupCommand : r
-deactivate CommandResult
-
-AssignGroupCommand --> LogicManager : r
-deactivate AssignGroupCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml

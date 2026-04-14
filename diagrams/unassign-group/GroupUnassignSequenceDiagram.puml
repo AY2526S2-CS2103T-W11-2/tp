@@ -7,12 +7,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":HitListParser" as HitListParser LOGIC_COLOR
 participant ":UnassignGroupCommandParser" as UnassignGroupCommandParser LOGIC_COLOR
 participant "c:UnassignGroupCommand" as UnassignGroupCommand LOGIC_COLOR
-participant "r:CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Model MODEL_COLOR_T1
-participant "targetGroup:Group" as Group MODEL_COLOR
-participant "m:Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("grpunassign /n Alex /g Students")
@@ -24,7 +18,6 @@ activate HitListParser
 create UnassignGroupCommandParser
 HitListParser -> UnassignGroupCommandParser
 activate UnassignGroupCommandParser
-
 UnassignGroupCommandParser --> HitListParser
 deactivate UnassignGroupCommandParser
 
@@ -34,7 +27,6 @@ activate UnassignGroupCommandParser
 create UnassignGroupCommand
 UnassignGroupCommandParser -> UnassignGroupCommand
 activate UnassignGroupCommand
-
 UnassignGroupCommand --> UnassignGroupCommandParser : c
 deactivate UnassignGroupCommand
 
@@ -45,44 +37,4 @@ destroy UnassignGroupCommandParser
 HitListParser --> LogicManager : c
 deactivate HitListParser
 
-LogicManager -> UnassignGroupCommand : execute(m)
-activate UnassignGroupCommand
-
-UnassignGroupCommand -> Model : getPersonsByName(personName)
-activate Model
-Model --> UnassignGroupCommand : matchedPersons
-deactivate Model
-
-UnassignGroupCommand -> Model : getGroup(groupName)
-activate Model
-Model --> UnassignGroupCommand : targetGroup
-deactivate Model
-
-UnassignGroupCommand -> Group : hasMember(personToUnassign)
-activate Group
-Group --> UnassignGroupCommand : true/false
-deactivate Group
-
-UnassignGroupCommand -> Group : removeMember(personToUnassign)
-activate Group
-Group --> UnassignGroupCommand
-deactivate Group
-
-UnassignGroupCommand -> Model : updateFilteredPersonList(predicate)
-activate Model
-Model --> UnassignGroupCommand
-deactivate Model
-
-create CommandResult
-UnassignGroupCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> UnassignGroupCommand : r
-deactivate CommandResult
-
-UnassignGroupCommand --> LogicManager : r
-deactivate UnassignGroupCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml
